@@ -1,5 +1,9 @@
 import Nav from './compoments/navigation/Nav';
 import './App.scss';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+
 import Slider from './compoments/Slider/Slider'
 import {
   BrowserRouter as Router,
@@ -27,7 +31,7 @@ function App() {
           contact
           </Route>
           <Route path="/" exact>
-            Tất cả sản phẩm
+            tatcasanpham
           </Route>
           <Route path ="*">
             404 not found
