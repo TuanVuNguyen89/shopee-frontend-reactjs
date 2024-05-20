@@ -3,7 +3,7 @@ import './App.scss';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
-
+import Allproduct from './compoments/Allproduct/Allproduct';
 import Slider from './compoments/Slider/Slider'
 import {
   BrowserRouter as Router,
@@ -31,7 +31,7 @@ function App() {
           contact
           </Route>
           <Route path="/" exact>
-            tatcasanpham
+            <Allproduct/>
           </Route>
           <Route path ="*">
             404 not found

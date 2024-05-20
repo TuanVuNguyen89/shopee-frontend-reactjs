@@ -1,0 +1,166 @@
+.allBackground {
+    background-color: rgb(230, 229, 229);
+    width: 100%;
+    height: 100%;
+    color: rgb(0, 0, 0);
+    display: block;
+
+    .recoment {
+        display: flex;
+    }
+
+    h5 {
+        margin-top: 20px;
+        padding: 10px 25px;
+    }
+
+    .product {
+        flex-basis: 16.666%;
+        max-width: 16.666%;
+        box-sizing: border-box;
+        flex: 0 0 auto;
+        padding-left: .3125rem;
+        padding-right: .3125rem;
+        margin: 0px 10px;
+        font-size: .875rem;
+    }
+        .row {
+            justify-content: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin-left: 1.3125rem;
+            margin-right: 1.3125rem;
+            
+        }
+
+    .Product-img {
+        height: 200px;
+    }
+
+    .Nameproduct {
+        color: black;
+        font-size: smaller;
+        overflow-wrap: break-word;
+        min-height: 2.5rem;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        display: -webkit-box;
+        overflow: hidden;
+    }
+
+    .ease-sharp-motion-curve {
+        transition-timing-function: cubic-bezier(.4, 0, .6, 1);
+    }
+
+    .duration-100 {
+        transition-duration: .1s;
+    }
+
+     .contents {
+        display: contents;
+    }
+
+   .ease-sharp-motion-curve {
+        transition-timing-function: cubic-bezier(.4, 0, .6, 1);
+    }
+
+     .duration-100 {
+        transition-duration: .1s;
+    }
+
+    .h-full {
+        height: 100%;
+    }
+
+    .relative {
+        position: relative;
+    }
+
+    .shopee_ic .hover\:shadow-hover:hover {
+        --tw-shadow: 0 1px 20px 0 rgba(0, 0, 0, .2);
+        --tw-shadow-colored: 0 1px 20px 0 var(--tw-shadow-color);
+        box-shadow: var(--tw-ring-offset-shadow, 0 0 transparent), var(--tw-ring-shadow, 0 0 transparent), var(--tw-shadow);
+    }
+
+    .shopee_ic .hover\:-translate-y-\[1px\]:hover {
+        --tw-translate-y: -1px;
+        transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    }
+    .shopee_ic {
+        transition: transform 0.3s ease; /* Áp dụng hiệu ứng dịch chuyển trong 0.3 giây với hiệu ứng chuyển động êm ái */
+      }
+      
+      .shopee_ic:hover {
+        /* Thiết lập hiệu ứng khi hover vào */
+        transform: translateY(-3px); /* Dịch chuyển thẻ div lên 1px khi hover vào */
+      }
+   .hover\:z-\[1\]:hover {
+        z-index: 1;
+    }
+
+    .flex-col {
+        flex-direction: column;
+    }
+
+    .cursor-pointer {
+        cursor: pointer;
+    }
+.flex {
+        display: flex;
+    }
+
+ .p-2 {
+        padding: .5rem;
+    }
+
+.justify-between {
+        justify-content: space-between;
+    }
+
+ .flex-1 {
+        flex: 1 1 0%;
+    }
+
+ .min-h-\[4rem\] {
+        min-height: 4rem;
+    }
+
+  .mb-1 {
+        margin-bottom: .25rem;
+    }
+
+  .text-sm {
+        font-size: .875rem;
+        line-height: 1.25rem;
+    }
+
+     .break-words {
+        overflow-wrap: break-word;
+    }
+
+  .min-h-\[2\.5rem\] {
+        min-height: 2.5rem;
+        color: black;
+        font-size: larger;
+    }
+
+   .line-clamp-2 {
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        display: -webkit-box;
+        overflow: hidden;
+    }
+    .text-base5{
+        color: red;
+        font-weight: 500;
+        font-size: larger;
+    }
+    .buyicon{
+        justify-content: center;
+        color: rgb(12, 141, 38);
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        font-size: larger;
+    }
+}
