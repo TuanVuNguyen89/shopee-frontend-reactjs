@@ -25,12 +25,13 @@
         font-size: .875rem;
     }
         .row {
+            margin-top: 10px;
             justify-content: center;
             flex-direction: row;
             flex-wrap: wrap;
             margin-left: 1.3125rem;
             margin-right: 1.3125rem;
-            
+            animation: homect ease 1s;
         }
 
     .Product-img {
@@ -163,4 +164,19 @@
         margin-left: auto;
         font-size: larger;
     }
+    .Sliderproduct{
+        margin: 20px auto;
+        width: 70%;
+    }
+}
+@keyframes homect {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 100;
+        transform: translateY(0px);
+    }
+    
 }
