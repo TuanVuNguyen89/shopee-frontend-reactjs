@@ -10,40 +10,51 @@ import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import { faSquarePhoneFlip } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faHouseChimney } from '@fortawesome/free-solid-svg-icons';
+import { readShopInfo } from '../../services/shopService';
+import { useEffect, useState } from 'react';
 const Slider = (props) => {
 
+    const [listInfo, setListInfo] = useState([]);
+    useEffect(() => {
+        setShopInfo();
+    }, []);
+
+    const setShopInfo = async () => {
+        let response = await readShopInfo();
+
+        //console.log(">>> response.DT: ", response.DT[0]);
+        if (response && response.EC === 0) {
+            setListInfo(response.DT[0]);
+            //console.log(">>> listInfo", listInfo);
+        }
+    }
 
     return (
         <div>
-            <div class="Slider-container" >
-               <div class="Background">
-                <div class="row container Logo-container">
-                    <div class="Logo col-3 rounded">
-                    <a href="https://www.facebook.com/ducanhle210905" target="_blank" rel="noopener noreferrer">
-                    <img class="Logo-img" src={logo} alt="Description of the image"/>
-                    </a>
-                        <div class="shopInfo">
-                            <h4 class="nameShop"><a href="https://www.facebook.com/ducanhle210905" target="_blank" rel="noopener noreferrer">ASIN STORE</a></h4>
-                            <p><FontAwesomeIcon icon={faCircleInfo} />       Contact: </p>
-                            <p><FontAwesomeIcon icon={faSquarePhoneFlip} />         Phone number: 0869 014 634</p>
-                            <p><FontAwesomeIcon icon={faFacebook} />               <a href="https://www.facebook.com/ducanhle210905" target="_blank" rel="noopener noreferrer">Follow Page: ASIN STORE</a></p>
-                            <p><FontAwesomeIcon icon={faHouseChimney} />            Địa Chỉ: </p>
+            <div className="Slider-container" >
+                <div className="Background">
+                    <div className="row container Logo-container">
+                        <div className="Logo col-3 rounded">
+                            <a href={listInfo.contact} target="_blank" rel="noopener noreferrer">
+                                <img className="Logo-img" src={logo} alt="Description of the image" />
+                            </a>
+                            <div className="shopInfo">
+                                <h4 className="nameShop"><a href={listInfo.contact} target="_blank" rel="noopener noreferrer">{listInfo.name}</a></h4>
+                                <p><FontAwesomeIcon icon={faCircleInfo} />       Contact: {listInfo.contact} </p>
+                                <p><FontAwesomeIcon icon={faSquarePhoneFlip} />         Phone number: {listInfo.phone}</p>
+                                <p><FontAwesomeIcon icon={faFacebook} />               <a href={listInfo.contact} target="_blank" rel="noopener noreferrer">Follow Page:  {listInfo.page} </a></p>
+                                <p><FontAwesomeIcon icon={faHouseChimney} />            Địa Chỉ: {listInfo.address} </p>
+                            </div>
+                        </div>
+                        <div className="Description col-3 rounded">
+                            <div>
+                                <pre>{listInfo.description}</pre>
+                            </div>
                         </div>
                     </div>
-                    <div class="Description col-3 rounded">
-                        <div>
-                            <h5>Mô tả </h5>
-                            <p><FontAwesomeIcon icon={faStar} />   ASIN STORE – chuỗi cửa hàng bán lẻ thời trang nam   <FontAwesomeIcon icon={faStar} /></p>
-                            <p>Chuyên cung cấp và phân phối các sản phẩm:</p>
-                            <p>- Dòng sản phẩm về Áo: áo thun, áo polo, áo ba lỗ, áo len, áo nỉ, áo khoác, áo hoodie</p>
-                            <p>- Dòng sản phẩm về quần: quần jean, quần jogger – quần dài, quần tây, quần short, quần kaki</p>
-                            <p>- ASIN STORE còn cung cấp các sản phẩm giày dép,...</p>
-                        </div>
-                    </div>
+                    <img className="Background-img" src={background} />
+
                 </div>
-               <img class="Background-img" src={background}/>
-               
-               </div>
             </div>
         </div>
     );
