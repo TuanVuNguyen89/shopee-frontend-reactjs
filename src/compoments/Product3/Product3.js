@@ -1,9 +1,4 @@
 import React from 'react';
-import Productdescription from '../Productdescription/Productdescription';
-import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import ReactPaginate from "react-paginate";
-import { fetchAllUsers } from "../../services/shopService";
 import '../Allproduct/Allproduct.scss';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -23,32 +18,6 @@ import banner4 from '../img/ban4.jpg'
 
 
 const Allproduct = (props) => {
-    const [listUsers, setListUsers] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [currentLimit, setCurrentLimit] = useState(2);
-    const [totalPages, setTotalPages] = useState(10);
-    useEffect(() => {
-        fetchUsers();
-    }, [currentPage]);
-
-    const fetchUsers = async () => {
-        let response = await fetchAllUsers(currentPage, currentLimit);
-        //console.log(response);
-
-        if (response && response.EC === 0) {
-            // setListUsers(response.DT);
-            //console.log(">>> check response", response.DT);
-
-            //console.log(">>> check list users: ", response.DT.users);
-            setTotalPages(response.DT.totalPages);
-            setListUsers(response.DT.users);
-        }
-    };
-    const handlePageClick = async (event) => {
-        //console.log(">>> check data event", event);
-        setCurrentPage(event.selected + 1);
-        //await fetchUsers(event.selected + 1);
-    };
     return (
         <div class="allBackground">
             <div class="recoment">
@@ -58,7 +27,7 @@ const Allproduct = (props) => {
                 <div class="product col-xs-2 mt-2">
                     <div class="shopee_ic">
                         <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                            <a class="contents" href='../Productdescription/Productdescription'>
+                            <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
                                 <div class="flex flex-col bg-white cursor-pointer h-full">
                                     <div class="flex flex-col bg-white cursor-pointer h-full">
                                         <img src={product} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
@@ -677,30 +646,20 @@ const Allproduct = (props) => {
 
 
             </div>
-            {totalPages > 0 &&
-                <div className="user-footer">
-                    <ReactPaginate
-                        nextLabel="next >"
-                        onPageChange={handlePageClick}
-                        pageRangeDisplayed={3}
-                        marginPagesDisplayed={2}
-                        pageCount={totalPages}
-                        previousLabel="< previous"
-                        pageClassName="page-item"
-                        pageLinkClassName="page-link"
-                        previousClassName="page-item"
-                        previousLinkClassName="page-link"
-                        nextClassName="page-item"
-                        nextLinkClassName="page-link"
-                        breakLabel="..."
-                        breakClassName="page-item"
-                        breakLinkClassName="page-link"
-                        containerClassName="pagination"
-                        activeClassName="active"
-                        renderOnZeroPageCount={null}
-                    />
-                </div>
-}
+            <div class="numberPage">
+            <button class="previus-Page page">
+            <FontAwesomeIcon icon={faArrowLeft} />
+            </button>
+            <div class="number">
+             <button class="page">1</button>
+             <button class="page">2</button>
+             <button class="page">3</button>
+             <button class="page">4</button>
+            </div>
+            <button class="next-Page page">
+            <FontAwesomeIcon icon={faArrowRight} />
+            </button>
+            </div>
 
 
         </div>

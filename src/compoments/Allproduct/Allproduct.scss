@@ -26,6 +26,7 @@
     }
         .row {
             margin-top: 10px;
+            margin-bottom: 15px;
             justify-content: center;
             flex-direction: row;
             flex-wrap: wrap;
@@ -168,7 +169,42 @@
         margin: 20px auto;
         width: 70%;
     }
+    .user-footer{
+        display: flex;
+        justify-content: center;
+    }
+    .page-item{
+        border: none;
+        padding: 10px 5px;
+        background-color: transparent;
+  background-image: linear-gradient(90deg, #f78411 0%, #f78411 50%, transparent 50%, transparent 100%);
+  background-size: 200% 100%;
+  background-position: right center;
+  transition: background-position 0.3s ease; /* Thêm hiệu ứng transition cho background-position */
 }
+.page-link{
+    border: none;
+    padding: 10px 15px;
+    background-color: transparent;
+background-image: linear-gradient(90deg, #f78411 0%, #f78411 50%, transparent 50%, transparent 100%);
+background-size: 200% 100%;
+background-position: right center;
+transition: background-position 0.3s ease; /* Thêm hiệu ứng transition cho background-position */
+}
+
+.page-link:hover {
+    color: beige;
+  background-position: left center; /* Di chuyển gradient từ trái sang phải khi hover */
+}
+
+  .active>.page-link, .page-link.active {
+    z-index: 3;
+    color: var(--bs-pagination-active-color);
+    background-color: #f78411;
+     border-color: #f78411;
+}
+}
+    
 @keyframes homect {
     from {
         opacity: 0;

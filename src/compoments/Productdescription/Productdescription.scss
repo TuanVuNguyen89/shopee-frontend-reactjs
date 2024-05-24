@@ -1,0 +1,77 @@
+.allBackground2 {
+    background-color: rgb(230, 229, 229);
+    width: 100%;
+    height: 100%;
+    color: rgb(0, 0, 0);
+    display: flex;
+    visibility: visible;
+    width: auto;
+    .container{
+        margin-top: 20px;
+        background-color: white;
+    }
+    .Allpicture{
+    flex-shrink: 0;
+    padding: 15px;
+    width: 450px;
+    }
+    .shopee-image-container {
+        padding-bottom: 100%;
+        position: relative;
+        width: 100%;
+    }
+    .IMAW1w {
+        display: block;
+        object-fit: contain;
+        object-position: center;
+    }
+    .IMAW1w {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+    .airUhU {
+        margin: 5px -5px;
+        position: relative;
+    }
+    .UBG7wZ {
+        box-sizing: border-box;
+        display: inline-block;
+        padding: 5px;
+        width: 20%;
+    }
+    .jA1mTx {
+        position: relative;
+    }
+    .wOzCmT {
+        left: 0;
+        position: absolute;
+        top: 0;
+    }
+    .wOzCmT {
+        border: 2px solid var(--brand-primary-color, #ee4d2d);
+        bottom: 0;
+        right: 0;
+    }
+    .bh76f7, .wOzCmT {
+        left: 0;
+        position: absolute;
+        top: 0;
+    }
+    .wOzCmT {
+        border: 2px solid var(--brand-primary-color, #ee4d2d);
+        bottom: 0;
+        right: 0;
+    }
+    .jA1mTx:hover {
+        cursor: pointer;
+    }.wOzCmT  {
+        display: none;
+    }
+    
+    .wOzCmT:hover  {
+        display: block;
+    }
+}
