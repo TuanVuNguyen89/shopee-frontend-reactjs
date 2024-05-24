@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+import { readProductInfo } from '../../services/productService'
 import React from 'react';
 import '../Allproduct/Allproduct.scss';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -17,186 +19,88 @@ import banner4 from '../img/ban4.jpg'
 
 
 const Allproduct = (props) => {
+    const [listProduct, setlistProduct] = useState([]);
+
+    useEffect(() => {
+        fetchProducts();
+    }, []);
+
+    const fetchProducts = async () => {
+        await readProductInfo();
+        let response = await readProductInfo();
+
+        if (response && response.DT.EC === 0) {
+            setlistProduct(response.DT.DT);
+        }
+    }
+
     return (
-        <div class="allBackground">
-            <div class="recoment">
+        <div className="allBackground">
+            <div className="recoment">
                 <h5>GỢI Ý CHO BẠN</h5>
             </div>
-            <div class="row">
-                <div class="product col-xs-2 mt-2">
-                    <div class="shopee_ic">
-                        <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                            <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
-                                <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
-                                        <img src={product} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
-                                    </div>
-                                    <div class="p-2 flex-1 flex flex-col justify-between">
-                                        <div class="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
-                                            <div class="line-clamp-2 break-words min-h-[2.5rem] text-sm">
-                                                Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn
-                                            </div>
-                                        </div>
-                                        <div class="flex-1 flex flex-col justify-between">
-                                            <div class="mb-2 flex items-center">
-                                                <span class="text-base5 truncate">137.000</span>
-                                                <span class="text-base5">VN₫</span>
-                                                <div class="buyicon">
-                                                    <FontAwesomeIcon icon={faCartShopping} />
-                                                </div>
-                                            </div>
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-1"></div>
-                </div>
-                <div class="product col-xs-2 mt-2">
-                    <div class="shopee_ic">
-                        <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                            <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
-                                <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
-                                        <img src={product2} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
-                                    </div>
-                                    <div class="p-2 flex-1 flex flex-col justify-between">
-                                        <div class="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
-                                            <div class="line-clamp-2 break-words min-h-[2.5rem] text-sm">
-                                                Áo Sơ Mi Ngắn Tay Dáng Rộng In Họa Tiết Báo Thời Trang Hongkong Dành Cho Nam / Size m-5xl
-                                            </div>
-                                        </div>
-                                        <div class="flex-1 flex flex-col justify-between">
-                                            <div class="mb-2 flex items-center">
-                                                <span class="text-base5 truncate">137.000</span>
-                                                <span class="text-base5">VN₫</span>
-                                                <div class="buyicon">
-                                                    <FontAwesomeIcon icon={faCartShopping} />
+            <div className="row">
+                <div className="product col-xs-2 mt-2">
+                    <div className="shopee_ic">
+                        <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
+                            {
+                                listProduct.map((product, index) => {
+                                    return (
+                                        <a className="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
+                                            <div className="flex flex-col bg-white cursor-pointer h-full">
+                                                <div className="flex flex-col bg-white cursor-pointer h-full">
+                                                    <img src={product2} alt={`${product.name}`} className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
+                                                </div>
+                                                <div className="p-2 flex-1 flex flex-col justify-between">
+                                                    <div className="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
+                                                        <div className="line-clamp-2 break-words min-h-[2.5rem] text-sm">
+                                                            {product.name}
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex-1 flex flex-col justify-between">
+                                                        <div className="mb-2 flex items-center">
+                                                            <span className="text-base5 truncate">{product.price}</span>
+                                                            <span className="text-base5">VNĐ</span>
+                                                            <div className="buyicon">
+                                                                <FontAwesomeIcon icon={faCartShopping} />
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
+                                        </a>
+                                    )
+                                })
+                            }
                         </div>
                     </div>
-                    <div class="flex items-center space-x-1"></div>
-                </div>
-                <div class="product col-xs-2 mt-2">
-                    <div class="shopee_ic">
-                        <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                            <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
-                                <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
-                                        <img src={product3} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
-                                    </div>
-                                    <div class="p-2 flex-1 flex flex-col justify-between">
-                                        <div class="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
-                                            <div class="line-clamp-2 break-words min-h-[2.5rem] text-sm">
-                                                Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn
-                                            </div>
-                                        </div>
-                                        <div class="flex-1 flex flex-col justify-between">
-                                            <div class="mb-2 flex items-center">
-                                                <span class="text-base5 truncate">137.000</span>
-                                                <span class="text-base5">VN₫</span>
-                                                <div class="buyicon">
-                                                    <FontAwesomeIcon icon={faCartShopping} />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-1"></div>
-                </div>
-                <div class="product col-xs-2 mt-2">
-                    <div class="shopee_ic">
-                        <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                            <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
-                                <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
-                                        <img src={product4} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
-                                    </div>
-                                    <div class="p-2 flex-1 flex flex-col justify-between">
-                                        <div class="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
-                                            <div class="line-clamp-2 break-words min-h-[2.5rem] text-sm">
-                                                Mới Áo Thun polo Tay Lỡ Thời Trang Mùa Hè 2023 alphanumeric Phong Cách harajuku Trẻ Trung Dành Cho Nam
-                                            </div>
-                                        </div>
-                                        <div class="flex-1 flex flex-col justify-between">
-                                            <div class="mb-2 flex items-center">
-                                                <span class="text-base5 truncate">137.000</span>
-                                                <span class="text-base5">VN₫</span>
-                                                <div class="buyicon">
-                                                    <FontAwesomeIcon icon={faCartShopping} />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-1"></div>
-                </div>
-                <div class="product col-xs-2 mt-2">
-                    <div class="shopee_ic">
-                        <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                            <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
-                                <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
-                                        <img src={product5} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
-                                    </div>
-                                    <div class="p-2 flex-1 flex flex-col justify-between">
-                                        <div class="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
-                                            <div class="line-clamp-2 break-words min-h-[2.5rem] text-sm">
-                                                Haibinzoulu Áo Thun polo Ngắn Tay Cổ Lọ Họa Tiết graffiti Cá Tính Cho Nam Nữ
-                                            </div>
-                                        </div>
-                                        <div class="flex-1 flex flex-col justify-between">
-                                            <div class="mb-2 flex items-center">
-                                                <span class="text-base5 truncate">137.000</span>
-                                                <span class="text-base5">VN₫</span>
-                                                <div class="buyicon">
-                                                    <FontAwesomeIcon icon={faCartShopping} />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-1"></div>
                 </div>
 
 
             </div>
-            <div class="row">
-                <div class="product col-xs-2 mt-2">
-                    <div class="shopee_ic">
-                        <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                            <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
-                                <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
-                                        <img src={product} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
+
+            <div className="row">
+                <div className="product col-xs-2 mt-2">
+                    <div className="shopee_ic">
+                        <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
+                            <a className="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
+                                <div className="flex flex-col bg-white cursor-pointer h-full">
+                                    <div className="flex flex-col bg-white cursor-pointer h-full">
+                                        <img src={product} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                     </div>
-                                    <div class="p-2 flex-1 flex flex-col justify-between">
-                                        <div class="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
-                                            <div class="line-clamp-2 break-words min-h-[2.5rem] text-sm">
+                                    <div className="p-2 flex-1 flex flex-col justify-between">
+                                        <div className="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
+                                            <div className="line-clamp-2 break-words min-h-[2.5rem] text-sm">
                                                 Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn
                                             </div>
                                         </div>
-                                        <div class="flex-1 flex flex-col justify-between">
-                                            <div class="mb-2 flex items-center">
-                                                <span class="text-base5 truncate">137.000</span>
-                                                <span class="text-base5">VN₫</span>
-                                                <div class="buyicon">
+                                        <div className="flex-1 flex flex-col justify-between">
+                                            <div className="mb-2 flex items-center">
+                                                <span className="text-base5 truncate">137.000</span>
+                                                <span className="text-base5">VN₫</span>
+                                                <div className="buyicon">
                                                     <FontAwesomeIcon icon={faCartShopping} />
                                                 </div>
                                             </div>
@@ -207,27 +111,27 @@ const Allproduct = (props) => {
                             </a>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-1"></div>
+                    <div className="flex items-center space-x-1"></div>
                 </div>
-                <div class="product col-xs-2 mt-2">
-                    <div class="shopee_ic">
-                        <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                            <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
-                                <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
-                                        <img src={product2} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
+                <div className="product col-xs-2 mt-2">
+                    <div className="shopee_ic">
+                        <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
+                            <a className="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
+                                <div className="flex flex-col bg-white cursor-pointer h-full">
+                                    <div className="flex flex-col bg-white cursor-pointer h-full">
+                                        <img src={product2} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                     </div>
-                                    <div class="p-2 flex-1 flex flex-col justify-between">
-                                        <div class="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
-                                            <div class="line-clamp-2 break-words min-h-[2.5rem] text-sm">
+                                    <div className="p-2 flex-1 flex flex-col justify-between">
+                                        <div className="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
+                                            <div className="line-clamp-2 break-words min-h-[2.5rem] text-sm">
                                                 Áo Sơ Mi Ngắn Tay Dáng Rộng In Họa Tiết Báo Thời Trang Hongkong Dành Cho Nam / Size m-5xl
                                             </div>
                                         </div>
-                                        <div class="flex-1 flex flex-col justify-between">
-                                            <div class="mb-2 flex items-center">
-                                                <span class="text-base5 truncate">137.000</span>
-                                                <span class="text-base5">VN₫</span>
-                                                <div class="buyicon">
+                                        <div className="flex-1 flex flex-col justify-between">
+                                            <div className="mb-2 flex items-center">
+                                                <span className="text-base5 truncate">137.000</span>
+                                                <span className="text-base5">VN₫</span>
+                                                <div className="buyicon">
                                                     <FontAwesomeIcon icon={faCartShopping} />
                                                 </div>
                                             </div>
@@ -237,27 +141,27 @@ const Allproduct = (props) => {
                             </a>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-1"></div>
+                    <div className="flex items-center space-x-1"></div>
                 </div>
-                <div class="product col-xs-2 mt-2">
-                    <div class="shopee_ic">
-                        <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                            <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
-                                <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
-                                        <img src={product3} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
+                <div className="product col-xs-2 mt-2">
+                    <div className="shopee_ic">
+                        <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
+                            <a className="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
+                                <div className="flex flex-col bg-white cursor-pointer h-full">
+                                    <div className="flex flex-col bg-white cursor-pointer h-full">
+                                        <img src={product3} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                     </div>
-                                    <div class="p-2 flex-1 flex flex-col justify-between">
-                                        <div class="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
-                                            <div class="line-clamp-2 break-words min-h-[2.5rem] text-sm">
+                                    <div className="p-2 flex-1 flex flex-col justify-between">
+                                        <div className="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
+                                            <div className="line-clamp-2 break-words min-h-[2.5rem] text-sm">
                                                 Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn
                                             </div>
                                         </div>
-                                        <div class="flex-1 flex flex-col justify-between">
-                                            <div class="mb-2 flex items-center">
-                                                <span class="text-base5 truncate">137.000</span>
-                                                <span class="text-base5">VN₫</span>
-                                                <div class="buyicon">
+                                        <div className="flex-1 flex flex-col justify-between">
+                                            <div className="mb-2 flex items-center">
+                                                <span className="text-base5 truncate">137.000</span>
+                                                <span className="text-base5">VN₫</span>
+                                                <div className="buyicon">
                                                     <FontAwesomeIcon icon={faCartShopping} />
                                                 </div>
                                             </div>
@@ -267,27 +171,27 @@ const Allproduct = (props) => {
                             </a>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-1"></div>
+                    <div className="flex items-center space-x-1"></div>
                 </div>
-                <div class="product col-xs-2 mt-2">
-                    <div class="shopee_ic">
-                        <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                            <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
-                                <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
-                                        <img src={product4} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
+                <div className="product col-xs-2 mt-2">
+                    <div className="shopee_ic">
+                        <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
+                            <a className="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
+                                <div className="flex flex-col bg-white cursor-pointer h-full">
+                                    <div className="flex flex-col bg-white cursor-pointer h-full">
+                                        <img src={product4} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                     </div>
-                                    <div class="p-2 flex-1 flex flex-col justify-between">
-                                        <div class="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
-                                            <div class="line-clamp-2 break-words min-h-[2.5rem] text-sm">
+                                    <div className="p-2 flex-1 flex flex-col justify-between">
+                                        <div className="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
+                                            <div className="line-clamp-2 break-words min-h-[2.5rem] text-sm">
                                                 Mới Áo Thun polo Tay Lỡ Thời Trang Mùa Hè 2023 alphanumeric Phong Cách harajuku Trẻ Trung Dành Cho Nam
                                             </div>
                                         </div>
-                                        <div class="flex-1 flex flex-col justify-between">
-                                            <div class="mb-2 flex items-center">
-                                                <span class="text-base5 truncate">137.000</span>
-                                                <span class="text-base5">VN₫</span>
-                                                <div class="buyicon">
+                                        <div className="flex-1 flex flex-col justify-between">
+                                            <div className="mb-2 flex items-center">
+                                                <span className="text-base5 truncate">137.000</span>
+                                                <span className="text-base5">VN₫</span>
+                                                <div className="buyicon">
                                                     <FontAwesomeIcon icon={faCartShopping} />
                                                 </div>
                                             </div>
@@ -297,27 +201,27 @@ const Allproduct = (props) => {
                             </a>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-1"></div>
+                    <div className="flex items-center space-x-1"></div>
                 </div>
-                <div class="product col-xs-2 mt-2">
-                    <div class="shopee_ic">
-                        <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                            <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
-                                <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
-                                        <img src={product5} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
+                <div className="product col-xs-2 mt-2">
+                    <div className="shopee_ic">
+                        <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
+                            <a className="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
+                                <div className="flex flex-col bg-white cursor-pointer h-full">
+                                    <div className="flex flex-col bg-white cursor-pointer h-full">
+                                        <img src={product5} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                     </div>
-                                    <div class="p-2 flex-1 flex flex-col justify-between">
-                                        <div class="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
-                                            <div class="line-clamp-2 break-words min-h-[2.5rem] text-sm">
+                                    <div className="p-2 flex-1 flex flex-col justify-between">
+                                        <div className="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
+                                            <div className="line-clamp-2 break-words min-h-[2.5rem] text-sm">
                                                 Haibinzoulu Áo Thun polo Ngắn Tay Cổ Lọ Họa Tiết graffiti Cá Tính Cho Nam Nữ
                                             </div>
                                         </div>
-                                        <div class="flex-1 flex flex-col justify-between">
-                                            <div class="mb-2 flex items-center">
-                                                <span class="text-base5 truncate">137.000</span>
-                                                <span class="text-base5">VN₫</span>
-                                                <div class="buyicon">
+                                        <div className="flex-1 flex flex-col justify-between">
+                                            <div className="mb-2 flex items-center">
+                                                <span className="text-base5 truncate">137.000</span>
+                                                <span className="text-base5">VN₫</span>
+                                                <div className="buyicon">
                                                     <FontAwesomeIcon icon={faCartShopping} />
                                                 </div>
                                             </div>
@@ -327,34 +231,34 @@ const Allproduct = (props) => {
                             </a>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-1"></div>
+                    <div className="flex items-center space-x-1"></div>
                 </div>
 
 
             </div>
-            <div class="Sliderproduct">
+            <div className="Sliderproduct">
                 <Sliderproduct arrImages={[banner1, banner2, banner3, banner4]} />
             </div>
-            <div class="row">
-                <div class="product col-xs-2 mt-2">
-                    <div class="shopee_ic">
-                        <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                            <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
-                                <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
-                                        <img src={product} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
+            <div className="row">
+                <div className="product col-xs-2 mt-2">
+                    <div className="shopee_ic">
+                        <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
+                            <a className="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
+                                <div className="flex flex-col bg-white cursor-pointer h-full">
+                                    <div className="flex flex-col bg-white cursor-pointer h-full">
+                                        <img src={product} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                     </div>
-                                    <div class="p-2 flex-1 flex flex-col justify-between">
-                                        <div class="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
-                                            <div class="line-clamp-2 break-words min-h-[2.5rem] text-sm">
+                                    <div className="p-2 flex-1 flex flex-col justify-between">
+                                        <div className="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
+                                            <div className="line-clamp-2 break-words min-h-[2.5rem] text-sm">
                                                 Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn
                                             </div>
                                         </div>
-                                        <div class="flex-1 flex flex-col justify-between">
-                                            <div class="mb-2 flex items-center">
-                                                <span class="text-base5 truncate">137.000</span>
-                                                <span class="text-base5">VN₫</span>
-                                                <div class="buyicon">
+                                        <div className="flex-1 flex flex-col justify-between">
+                                            <div className="mb-2 flex items-center">
+                                                <span className="text-base5 truncate">137.000</span>
+                                                <span className="text-base5">VN₫</span>
+                                                <div className="buyicon">
                                                     <FontAwesomeIcon icon={faCartShopping} />
                                                 </div>
                                             </div>
@@ -365,27 +269,27 @@ const Allproduct = (props) => {
                             </a>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-1"></div>
+                    <div className="flex items-center space-x-1"></div>
                 </div>
-                <div class="product col-xs-2 mt-2">
-                    <div class="shopee_ic">
-                        <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                            <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
-                                <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
-                                        <img src={product2} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
+                <div className="product col-xs-2 mt-2">
+                    <div className="shopee_ic">
+                        <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
+                            <a className="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
+                                <div className="flex flex-col bg-white cursor-pointer h-full">
+                                    <div className="flex flex-col bg-white cursor-pointer h-full">
+                                        <img src={product2} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                     </div>
-                                    <div class="p-2 flex-1 flex flex-col justify-between">
-                                        <div class="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
-                                            <div class="line-clamp-2 break-words min-h-[2.5rem] text-sm">
+                                    <div className="p-2 flex-1 flex flex-col justify-between">
+                                        <div className="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
+                                            <div className="line-clamp-2 break-words min-h-[2.5rem] text-sm">
                                                 Áo Sơ Mi Ngắn Tay Dáng Rộng In Họa Tiết Báo Thời Trang Hongkong Dành Cho Nam / Size m-5xl
                                             </div>
                                         </div>
-                                        <div class="flex-1 flex flex-col justify-between">
-                                            <div class="mb-2 flex items-center">
-                                                <span class="text-base5 truncate">137.000</span>
-                                                <span class="text-base5">VN₫</span>
-                                                <div class="buyicon">
+                                        <div className="flex-1 flex flex-col justify-between">
+                                            <div className="mb-2 flex items-center">
+                                                <span className="text-base5 truncate">137.000</span>
+                                                <span className="text-base5">VN₫</span>
+                                                <div className="buyicon">
                                                     <FontAwesomeIcon icon={faCartShopping} />
                                                 </div>
                                             </div>
@@ -395,27 +299,27 @@ const Allproduct = (props) => {
                             </a>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-1"></div>
+                    <div className="flex items-center space-x-1"></div>
                 </div>
-                <div class="product col-xs-2 mt-2">
-                    <div class="shopee_ic">
-                        <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                            <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
-                                <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
-                                        <img src={product3} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
+                <div className="product col-xs-2 mt-2">
+                    <div className="shopee_ic">
+                        <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
+                            <a className="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
+                                <div className="flex flex-col bg-white cursor-pointer h-full">
+                                    <div className="flex flex-col bg-white cursor-pointer h-full">
+                                        <img src={product3} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                     </div>
-                                    <div class="p-2 flex-1 flex flex-col justify-between">
-                                        <div class="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
-                                            <div class="line-clamp-2 break-words min-h-[2.5rem] text-sm">
+                                    <div className="p-2 flex-1 flex flex-col justify-between">
+                                        <div className="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
+                                            <div className="line-clamp-2 break-words min-h-[2.5rem] text-sm">
                                                 Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn
                                             </div>
                                         </div>
-                                        <div class="flex-1 flex flex-col justify-between">
-                                            <div class="mb-2 flex items-center">
-                                                <span class="text-base5 truncate">137.000</span>
-                                                <span class="text-base5">VN₫</span>
-                                                <div class="buyicon">
+                                        <div className="flex-1 flex flex-col justify-between">
+                                            <div className="mb-2 flex items-center">
+                                                <span className="text-base5 truncate">137.000</span>
+                                                <span className="text-base5">VN₫</span>
+                                                <div className="buyicon">
                                                     <FontAwesomeIcon icon={faCartShopping} />
                                                 </div>
                                             </div>
@@ -425,27 +329,27 @@ const Allproduct = (props) => {
                             </a>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-1"></div>
+                    <div className="flex items-center space-x-1"></div>
                 </div>
-                <div class="product col-xs-2 mt-2">
-                    <div class="shopee_ic">
-                        <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                            <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
-                                <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
-                                        <img src={product4} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
+                <div className="product col-xs-2 mt-2">
+                    <div className="shopee_ic">
+                        <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
+                            <a className="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
+                                <div className="flex flex-col bg-white cursor-pointer h-full">
+                                    <div className="flex flex-col bg-white cursor-pointer h-full">
+                                        <img src={product4} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                     </div>
-                                    <div class="p-2 flex-1 flex flex-col justify-between">
-                                        <div class="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
-                                            <div class="line-clamp-2 break-words min-h-[2.5rem] text-sm">
+                                    <div className="p-2 flex-1 flex flex-col justify-between">
+                                        <div className="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
+                                            <div className="line-clamp-2 break-words min-h-[2.5rem] text-sm">
                                                 Mới Áo Thun polo Tay Lỡ Thời Trang Mùa Hè 2023 alphanumeric Phong Cách harajuku Trẻ Trung Dành Cho Nam
                                             </div>
                                         </div>
-                                        <div class="flex-1 flex flex-col justify-between">
-                                            <div class="mb-2 flex items-center">
-                                                <span class="text-base5 truncate">137.000</span>
-                                                <span class="text-base5">VN₫</span>
-                                                <div class="buyicon">
+                                        <div className="flex-1 flex flex-col justify-between">
+                                            <div className="mb-2 flex items-center">
+                                                <span className="text-base5 truncate">137.000</span>
+                                                <span className="text-base5">VN₫</span>
+                                                <div className="buyicon">
                                                     <FontAwesomeIcon icon={faCartShopping} />
                                                 </div>
                                             </div>
@@ -455,27 +359,27 @@ const Allproduct = (props) => {
                             </a>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-1"></div>
+                    <div className="flex items-center space-x-1"></div>
                 </div>
-                <div class="product col-xs-2 mt-2">
-                    <div class="shopee_ic">
-                        <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                            <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
-                                <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
-                                        <img src={product5} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
+                <div className="product col-xs-2 mt-2">
+                    <div className="shopee_ic">
+                        <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
+                            <a className="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
+                                <div className="flex flex-col bg-white cursor-pointer h-full">
+                                    <div className="flex flex-col bg-white cursor-pointer h-full">
+                                        <img src={product5} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                     </div>
-                                    <div class="p-2 flex-1 flex flex-col justify-between">
-                                        <div class="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
-                                            <div class="line-clamp-2 break-words min-h-[2.5rem] text-sm">
+                                    <div className="p-2 flex-1 flex flex-col justify-between">
+                                        <div className="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
+                                            <div className="line-clamp-2 break-words min-h-[2.5rem] text-sm">
                                                 Haibinzoulu Áo Thun polo Ngắn Tay Cổ Lọ Họa Tiết graffiti Cá Tính Cho Nam Nữ
                                             </div>
                                         </div>
-                                        <div class="flex-1 flex flex-col justify-between">
-                                            <div class="mb-2 flex items-center">
-                                                <span class="text-base5 truncate">137.000</span>
-                                                <span class="text-base5">VN₫</span>
-                                                <div class="buyicon">
+                                        <div className="flex-1 flex flex-col justify-between">
+                                            <div className="mb-2 flex items-center">
+                                                <span className="text-base5 truncate">137.000</span>
+                                                <span className="text-base5">VN₫</span>
+                                                <div className="buyicon">
                                                     <FontAwesomeIcon icon={faCartShopping} />
                                                 </div>
                                             </div>
@@ -485,31 +389,31 @@ const Allproduct = (props) => {
                             </a>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-1"></div>
+                    <div className="flex items-center space-x-1"></div>
                 </div>
 
 
             </div>
-            <div class="row">
-                <div class="product col-xs-2 mt-2">
-                    <div class="shopee_ic">
-                        <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                            <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
-                                <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
-                                        <img src={product} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
+            <div className="row">
+                <div className="product col-xs-2 mt-2">
+                    <div className="shopee_ic">
+                        <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
+                            <a className="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
+                                <div className="flex flex-col bg-white cursor-pointer h-full">
+                                    <div className="flex flex-col bg-white cursor-pointer h-full">
+                                        <img src={product} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                     </div>
-                                    <div class="p-2 flex-1 flex flex-col justify-between">
-                                        <div class="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
-                                            <div class="line-clamp-2 break-words min-h-[2.5rem] text-sm">
+                                    <div className="p-2 flex-1 flex flex-col justify-between">
+                                        <div className="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
+                                            <div className="line-clamp-2 break-words min-h-[2.5rem] text-sm">
                                                 Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn
                                             </div>
                                         </div>
-                                        <div class="flex-1 flex flex-col justify-between">
-                                            <div class="mb-2 flex items-center">
-                                                <span class="text-base5 truncate">137.000</span>
-                                                <span class="text-base5">VN₫</span>
-                                                <div class="buyicon">
+                                        <div className="flex-1 flex flex-col justify-between">
+                                            <div className="mb-2 flex items-center">
+                                                <span className="text-base5 truncate">137.000</span>
+                                                <span className="text-base5">VN₫</span>
+                                                <div className="buyicon">
                                                     <FontAwesomeIcon icon={faCartShopping} />
                                                 </div>
                                             </div>
@@ -520,27 +424,27 @@ const Allproduct = (props) => {
                             </a>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-1"></div>
+                    <div className="flex items-center space-x-1"></div>
                 </div>
-                <div class="product col-xs-2 mt-2">
-                    <div class="shopee_ic">
-                        <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                            <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
-                                <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
-                                        <img src={product2} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
+                <div className="product col-xs-2 mt-2">
+                    <div className="shopee_ic">
+                        <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
+                            <a className="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
+                                <div className="flex flex-col bg-white cursor-pointer h-full">
+                                    <div className="flex flex-col bg-white cursor-pointer h-full">
+                                        <img src={product2} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                     </div>
-                                    <div class="p-2 flex-1 flex flex-col justify-between">
-                                        <div class="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
-                                            <div class="line-clamp-2 break-words min-h-[2.5rem] text-sm">
+                                    <div className="p-2 flex-1 flex flex-col justify-between">
+                                        <div className="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
+                                            <div className="line-clamp-2 break-words min-h-[2.5rem] text-sm">
                                                 Áo Sơ Mi Ngắn Tay Dáng Rộng In Họa Tiết Báo Thời Trang Hongkong Dành Cho Nam / Size m-5xl
                                             </div>
                                         </div>
-                                        <div class="flex-1 flex flex-col justify-between">
-                                            <div class="mb-2 flex items-center">
-                                                <span class="text-base5 truncate">137.000</span>
-                                                <span class="text-base5">VN₫</span>
-                                                <div class="buyicon">
+                                        <div className="flex-1 flex flex-col justify-between">
+                                            <div className="mb-2 flex items-center">
+                                                <span className="text-base5 truncate">137.000</span>
+                                                <span className="text-base5">VN₫</span>
+                                                <div className="buyicon">
                                                     <FontAwesomeIcon icon={faCartShopping} />
                                                 </div>
                                             </div>
@@ -550,27 +454,27 @@ const Allproduct = (props) => {
                             </a>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-1"></div>
+                    <div className="flex items-center space-x-1"></div>
                 </div>
-                <div class="product col-xs-2 mt-2">
-                    <div class="shopee_ic">
-                        <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                            <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
-                                <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
-                                        <img src={product3} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
+                <div className="product col-xs-2 mt-2">
+                    <div className="shopee_ic">
+                        <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
+                            <a className="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
+                                <div className="flex flex-col bg-white cursor-pointer h-full">
+                                    <div className="flex flex-col bg-white cursor-pointer h-full">
+                                        <img src={product3} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                     </div>
-                                    <div class="p-2 flex-1 flex flex-col justify-between">
-                                        <div class="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
-                                            <div class="line-clamp-2 break-words min-h-[2.5rem] text-sm">
+                                    <div className="p-2 flex-1 flex flex-col justify-between">
+                                        <div className="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
+                                            <div className="line-clamp-2 break-words min-h-[2.5rem] text-sm">
                                                 Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn
                                             </div>
                                         </div>
-                                        <div class="flex-1 flex flex-col justify-between">
-                                            <div class="mb-2 flex items-center">
-                                                <span class="text-base5 truncate">137.000</span>
-                                                <span class="text-base5">VN₫</span>
-                                                <div class="buyicon">
+                                        <div className="flex-1 flex flex-col justify-between">
+                                            <div className="mb-2 flex items-center">
+                                                <span className="text-base5 truncate">137.000</span>
+                                                <span className="text-base5">VN₫</span>
+                                                <div className="buyicon">
                                                     <FontAwesomeIcon icon={faCartShopping} />
                                                 </div>
                                             </div>
@@ -580,27 +484,27 @@ const Allproduct = (props) => {
                             </a>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-1"></div>
+                    <div className="flex items-center space-x-1"></div>
                 </div>
-                <div class="product col-xs-2 mt-2">
-                    <div class="shopee_ic">
-                        <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                            <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
-                                <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
-                                        <img src={product4} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
+                <div className="product col-xs-2 mt-2">
+                    <div className="shopee_ic">
+                        <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
+                            <a className="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
+                                <div className="flex flex-col bg-white cursor-pointer h-full">
+                                    <div className="flex flex-col bg-white cursor-pointer h-full">
+                                        <img src={product4} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                     </div>
-                                    <div class="p-2 flex-1 flex flex-col justify-between">
-                                        <div class="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
-                                            <div class="line-clamp-2 break-words min-h-[2.5rem] text-sm">
+                                    <div className="p-2 flex-1 flex flex-col justify-between">
+                                        <div className="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
+                                            <div className="line-clamp-2 break-words min-h-[2.5rem] text-sm">
                                                 Mới Áo Thun polo Tay Lỡ Thời Trang Mùa Hè 2023 alphanumeric Phong Cách harajuku Trẻ Trung Dành Cho Nam
                                             </div>
                                         </div>
-                                        <div class="flex-1 flex flex-col justify-between">
-                                            <div class="mb-2 flex items-center">
-                                                <span class="text-base5 truncate">137.000</span>
-                                                <span class="text-base5">VN₫</span>
-                                                <div class="buyicon">
+                                        <div className="flex-1 flex flex-col justify-between">
+                                            <div className="mb-2 flex items-center">
+                                                <span className="text-base5 truncate">137.000</span>
+                                                <span className="text-base5">VN₫</span>
+                                                <div className="buyicon">
                                                     <FontAwesomeIcon icon={faCartShopping} />
                                                 </div>
                                             </div>
@@ -610,27 +514,27 @@ const Allproduct = (props) => {
                             </a>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-1"></div>
+                    <div className="flex items-center space-x-1"></div>
                 </div>
-                <div class="product col-xs-2 mt-2">
-                    <div class="shopee_ic">
-                        <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                            <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
-                                <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
-                                        <img src={product5} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
+                <div className="product col-xs-2 mt-2">
+                    <div className="shopee_ic">
+                        <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
+                            <a className="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
+                                <div className="flex flex-col bg-white cursor-pointer h-full">
+                                    <div className="flex flex-col bg-white cursor-pointer h-full">
+                                        <img src={product5} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                     </div>
-                                    <div class="p-2 flex-1 flex flex-col justify-between">
-                                        <div class="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
-                                            <div class="line-clamp-2 break-words min-h-[2.5rem] text-sm">
+                                    <div className="p-2 flex-1 flex flex-col justify-between">
+                                        <div className="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
+                                            <div className="line-clamp-2 break-words min-h-[2.5rem] text-sm">
                                                 Haibinzoulu Áo Thun polo Ngắn Tay Cổ Lọ Họa Tiết graffiti Cá Tính Cho Nam Nữ
                                             </div>
                                         </div>
-                                        <div class="flex-1 flex flex-col justify-between">
-                                            <div class="mb-2 flex items-center">
-                                                <span class="text-base5 truncate">137.000</span>
-                                                <span class="text-base5">VN₫</span>
-                                                <div class="buyicon">
+                                        <div className="flex-1 flex flex-col justify-between">
+                                            <div className="mb-2 flex items-center">
+                                                <span className="text-base5 truncate">137.000</span>
+                                                <span className="text-base5">VN₫</span>
+                                                <div className="buyicon">
                                                     <FontAwesomeIcon icon={faCartShopping} />
                                                 </div>
                                             </div>
@@ -640,7 +544,7 @@ const Allproduct = (props) => {
                             </a>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-1"></div>
+                    <div className="flex items-center space-x-1"></div>
                 </div>
 
 
