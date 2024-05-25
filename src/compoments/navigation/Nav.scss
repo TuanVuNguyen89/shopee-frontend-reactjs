@@ -27,3 +27,13 @@
   background-color: #f78411;
   color: white;
 }
+@media (max-width: 1200px) {
+  .topnav .folder {
+    font-size: 10px;
+    padding: 10px 5px;
+  }
+}
+  // Media query cho thiết bị có độ rộng nhỏ hơn hoặc bằng 480px (mobile)
+  @media (max-width: 480px) {
+
+  }

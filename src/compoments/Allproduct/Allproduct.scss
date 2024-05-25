@@ -216,3 +216,48 @@ transition: background-position 0.3s ease; /* Thêm hiệu ứng transition cho 
     }
     
 }
+// Media query cho thiết bị có độ rộng nhỏ hơn hoặc bằng 768px (tablets và mobile)
+@media (max-width: 1200px) {
+    .allBackground{
+        .product{
+            max-width: 49.666%;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 17px;
+         }
+         .row{
+            margin-left: 10px;
+            margin-right: 0px;
+
+         }
+         .text-sm {
+            line-height: 2.25rem;
+        }
+        h5 {
+            font-size:small;
+            margin-top: 10px;
+    }
+  }
+}
+
+  // Media query cho thiết bị có độ rộng nhỏ hơn hoặc bằng 480px (mobile)
+  @media (max-width: 700px) {
+    .allBackground{
+        .product{
+            max-width: 49.666%;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 10px;
+         }
+         .row{
+            margin-left: 10px;
+            margin-right: 0px;
+
+         }
+         .text-sm {
+            line-height: 1.25rem;
+        }
+
+    }
+    
+  }
