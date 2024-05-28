@@ -154,12 +154,12 @@ const Allproduct = (props) => {
             {totalPages > 0 &&
                 <div className="user-footer">
                     <ReactPaginate
-                        nextLabel="next >"
+                        nextLabel=">"
                         onPageChange={handlePageClick}
                         pageRangeDisplayed={3}
                         marginPagesDisplayed={2}
                         pageCount={totalPages}
-                        previousLabel="< previous"
+                        previousLabel="<"
                         pageClassName="page-item"
                         pageLinkClassName="page-link"
                         previousClassName="page-item"

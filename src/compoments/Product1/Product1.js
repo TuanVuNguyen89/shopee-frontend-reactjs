@@ -1,6 +1,10 @@
 import React from 'react';
 import '../Allproduct/Allproduct.scss';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import ReactPaginate from "react-paginate";
+import { fetchAllUsers } from "../../services/shopService";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { faArrowRight, faCartShopping } from '@fortawesome/free-solid-svg-icons';
@@ -18,6 +22,32 @@ import banner4 from '../img/ban4.jpg'
 
 
 const Allproduct = (props) => {
+    const [listUsers, setListUsers] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [currentLimit, setCurrentLimit] = useState(2);
+    const [totalPages, setTotalPages] = useState(10);
+    useEffect(() => {
+        fetchUsers();
+    }, [currentPage]);
+
+    const fetchUsers = async () => {
+        let response = await fetchAllUsers(currentPage, currentLimit);
+        //console.log(response);
+
+        if (response && response.EC === 0) {
+            // setListUsers(response.DT);
+            //console.log(">>> check response", response.DT);
+
+            //console.log(">>> check list users: ", response.DT.users);
+            setTotalPages(response.DT.totalPages);
+            setListUsers(response.DT.users);
+        }
+    };
+    const handlePageClick = async (event) => {
+        //console.log(">>> check data event", event);
+        setCurrentPage(event.selected + 1);
+        //await fetchUsers(event.selected + 1);
+    };
     return (
         <div class="allBackground">
             <div class="recoment">
@@ -646,20 +676,31 @@ const Allproduct = (props) => {
 
 
             </div>
-            <div class="numberPage">
-            <button class="previus-Page page">
-            <FontAwesomeIcon icon={faArrowLeft} />
-            </button>
-            <div class="number">
-             <button class="page">1</button>
-             <button class="page">2</button>
-             <button class="page">3</button>
-             <button class="page">4</button>
-            </div>
-            <button class="next-Page page">
-            <FontAwesomeIcon icon={faArrowRight} />
-            </button>
-            </div>
+            {totalPages > 0 &&
+                <div className="user-footer">
+                    <ReactPaginate
+                        nextLabel=">"
+                        onPageChange={handlePageClick}
+                        pageRangeDisplayed={3}
+                        marginPagesDisplayed={2}
+                        pageCount={totalPages}
+                        previousLabel="<"
+                        pageClassName="page-item"
+                        pageLinkClassName="page-link"
+                        previousClassName="page-item"
+                        previousLinkClassName="page-link"
+                        nextClassName="page-item"
+                        nextLinkClassName="page-link"
+                        breakLabel="..."
+                        breakClassName="page-item"
+                        breakLinkClassName="page-link"
+                        containerClassName="pagination"
+                        activeClassName="active"
+                        renderOnZeroPageCount={null}
+                    />
+                </div>
+}
+
 
 
         </div>
