@@ -1,7 +1,7 @@
 import axios from '../setup/axios';
 
-const readProductInfo = () => {
-    return axios.get('/api/v1/product/read');
+const readProductInfo = (page, limit) => {
+    return axios.get(`/api/v1/product/read?page=${page}&limit=${limit}`);
 }
 
 export { readProductInfo };

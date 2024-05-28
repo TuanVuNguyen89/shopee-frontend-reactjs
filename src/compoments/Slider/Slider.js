@@ -12,6 +12,7 @@ import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faHouseChimney } from '@fortawesome/free-solid-svg-icons';
 import { readShopInfo } from '../../services/shopService';
 import { useEffect, useState } from 'react';
+import { Buffer } from 'buffer';
 const Slider = (props) => {
 
     const [listInfo, setListInfo] = useState([]);
@@ -24,7 +25,25 @@ const Slider = (props) => {
 
         //console.log(">>> response.DT: ", response.DT[0]);
         if (response && response.EC === 0) {
-            setListInfo(response.DT[0]);
+            let imageBase64Logo = '', imageBase64Background = '';
+            if (response.DT[0].logo) {
+                imageBase64Logo = new Buffer(response.DT[0].logo, 'base64').toString('binary');
+            }
+
+            if (response.DT[0].background) {
+                imageBase64Background = new Buffer(response.DT[0].background, 'base64').toString('binary');
+            }
+
+            setListInfo({
+                name: response.DT[0].name,
+                contact: response.DT[0].contact,
+                phone: response.DT[0].phone,
+                page: response.DT[0].page,
+                address: response.DT[0].address,
+                logo: imageBase64Logo,
+                background: imageBase64Background,
+                description: response.DT[0].description,
+            });
             //console.log(">>> listInfo", listInfo);
         }
     }
@@ -36,7 +55,7 @@ const Slider = (props) => {
                     <div className="row container Logo-container">
                         <div className="Logo col-3 rounded">
                             <a href={listInfo.contact} target="_blank" rel="noopener noreferrer">
-                                <img className="Logo-img" src={logo} alt="Description of the image" />
+                                <img className="Logo-img" src={listInfo.logo} alt="Description of the image" />
                             </a>
                             <div className="shopInfo">
                                 <h4 className="nameShop"><a href={listInfo.contact} target="_blank" rel="noopener noreferrer">{listInfo.name}</a></h4>
@@ -52,7 +71,7 @@ const Slider = (props) => {
                             </div>
                         </div>
                     </div>
-                    <img className="Background-img" src={background} />
+                    <img className="Background-img" src={listInfo.background} />
 
                 </div>
             </div>

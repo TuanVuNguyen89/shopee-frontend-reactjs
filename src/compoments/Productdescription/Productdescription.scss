@@ -1,0 +1,367 @@
+.allBackground2 {
+    background-color: rgb(230, 229, 229);
+    width: 100%;
+    height: 100%;
+    color: rgb(0, 0, 0);
+    display: flex;
+    visibility: visible;
+    width: auto;
+    .container{
+        margin-top: 20px;
+        background-color: white;
+        --tw-shadow: 0 1px 20px 0 rgba(0, 0, 0, .2);
+        --tw-shadow-colored: 0 1px 20px 0 var(--tw-shadow-color);
+        box-shadow: var(--tw-ring-offset-shadow, 0 0 transparent), var(--tw-ring-shadow, 0 0 transparent), var(--tw-shadow);
+    }
+    .Allpicture{
+    flex-shrink: 0;
+    padding: 15px;
+    width: 450px;
+    }
+    .shopee-image-container {
+        padding-bottom: 100%;
+        position: relative;
+        width: 100%;
+    }
+    .IMAW1w {
+        display: block;
+        object-fit: contain;
+        object-position: center;
+    }
+    .IMAW1w {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+    .airUhU {
+        margin: 5px -5px;
+        position: relative;
+    }
+    .UBG7wZ {
+        box-sizing: border-box;
+        display: inline-block;
+        padding: 1px;
+        width: 20%;
+    }
+    .jA1mTx {
+        position: relative;
+    }
+    .wOzCmT {
+        left: 0;
+        position: absolute;
+        top: 0;
+    }
+    .wOzCmT {
+        border: 2px solid var(--brand-primary-color, #ee4d2d);
+        bottom: 0;
+        right: 0;
+    }
+    .bh76f7, .wOzCmT {
+        left: 0;
+        position: absolute;
+        top: 0;
+    }
+    .wOzCmT {
+        border: 2px solid var(--brand-primary-color, #ee4d2d);
+        bottom: 0;
+        right: 0;
+    }
+    .jA1mTx:hover {
+        cursor: pointer;
+    }.wOzCmT  {
+        display: none;
+    }
+    
+    .wOzCmT:hover  {
+        display: block;
+    }
+    .UBG7wZ {
+        border: 3px solid transparent; /* Thiết lập viền border mặc định */
+        transition: border-color 0.3s; /* Hiệu ứng chuyển đổi màu của viền border */
+      }
+      
+      /* Khi hover vào .UBG7wZ, viền border sẽ chuyển sang màu đỏ */
+      .UBG7wZ:hover {
+        border-color: red;
+      }
+      .slide {
+        transform: translateX(-110%);
+      }
+      padding: 0;
+      .shopee-icon-button {
+        background-color: transparent;
+        border: 1px solid rgba(0, 0, 0, .54);
+        padding: 0;
+    }
+    
+    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+        align-items: center;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        font-size: .875rem;
+        font-weight: 300;
+        justify-content: center;
+        letter-spacing: 0;
+        line-height: 1;
+        outline: none;
+        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+    }
+    .shopee-icon-button {
+        background-color: transparent;
+        border: 1px solid rgba(0, 0, 0, .54);
+        padding: 0;
+    }
+    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+        align-items: center;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        font-size: .875rem;
+        font-weight: 300;
+        justify-content: center;
+        letter-spacing: 0;
+        line-height: 1;
+        outline: none;
+        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+    }
+    .shopee-icon-button {
+        background-color: transparent;
+        border: 1px solid rgba(0, 0, 0, .54);
+        padding: 0;
+    }
+    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+        align-items: center;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        font-size: .875rem;
+        font-weight: 300;
+        justify-content: center;
+        letter-spacing: 0;
+        line-height: 1;
+        outline: none;
+        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+    }
+    .CAvqYR, .lWmpR1 {
+        border: 0 !important;
+    }
+    .CAvqYR {
+        left: 5px;
+    }
+    .nVAzDy {
+        background-color: rgba(0, 0, 0, .2) !important;
+        border: 0;
+        color: #fff;
+        height: 40px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+    }
+    .shopee-icon-button {
+        background-color: transparent;
+        border: 1px solid rgba(0, 0, 0, .54);
+        padding: 0;
+    }
+    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+        align-items: center;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        font-size: .875rem;
+        font-weight: 300;
+        justify-content: center;
+        letter-spacing: 0;
+        line-height: 1;
+        outline: none;
+        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+    }
+    .shopee-icon-button {
+        background-color: transparent;
+        border: 1px solid rgba(0, 0, 0, .54);
+        padding: 0;
+    }
+    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+        align-items: center;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        font-size: .875rem;
+        font-weight: 300;
+        justify-content: center;
+        letter-spacing: 0;
+        line-height: 1;
+        outline: none;
+        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+    }
+    .shopee-icon-button {
+        border: 1px solid rgba(0, 0, 0, .54);
+        background-color: transparent;
+        padding: 0;
+    }
+    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+        outline: none;
+        cursor: pointer;
+        border: 0;
+        font-size: .875rem;
+        font-weight: 300;
+        line-height: 1;
+        letter-spacing: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+    }
+    .shopee-icon-button {
+        background-color: initial;
+        border: 1px solid rgba(0, 0, 0, .54);
+        padding: 0;
+    }
+    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+        align-items: center;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        font-size: .875rem;
+        font-weight: 300;
+        justify-content: center;
+        letter-spacing: 0;
+        line-height: 1;
+        outline: none;
+        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+    }
+    button, html input[type=button], input[type=reset], input[type=submit] {
+        -webkit-appearance: button;
+        cursor: pointer;
+    }
+    button, select {
+        text-transform: none;
+    }
+    button {
+        overflow: visible;
+    }
+    button, input, optgroup, select, textarea {
+        color: inherit;
+        font: inherit;
+        margin: 0;
+    }
+    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+        align-items: center;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        font-size: .875rem;
+        font-weight: 300;
+        justify-content: center;
+        letter-spacing: 0;
+        line-height: 1;
+        outline: none;
+        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+    }
+    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+        align-items: center;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        font-size: .875rem;
+        font-weight: 300;
+        justify-content: center;
+        letter-spacing: 0;
+        line-height: 1;
+        outline: none;
+        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+    }
+    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+        align-items: center;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        font-size: .875rem;
+        font-weight: 300;
+        justify-content: center;
+        letter-spacing: 0;
+        line-height: 1;
+        outline: none;
+        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+    }
+    .nVAzDy {
+        background-color: rgba(0, 0, 0, .2) !important;
+        border: 0;
+        color: #fff;
+        height: 40px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+    }
+    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+        align-items: center;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        font-size: .875rem;
+        font-weight: 300;
+        justify-content: center;
+        letter-spacing: 0;
+        line-height: 1;
+        outline: none;
+        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+    }
+    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+        align-items: center;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        font-size: .875rem;
+        font-weight: 300;
+        justify-content: center;
+        letter-spacing: 0;
+        line-height: 1;
+        outline: none;
+        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+    }
+    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+        outline: none;
+        cursor: pointer;
+        border: 0;
+        font-size: .875rem;
+        font-weight: 300;
+        line-height: 1;
+        letter-spacing: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+    }
+    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+        align-items: center;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        font-size: .875rem;
+        font-weight: 300;
+        justify-content: center;
+        letter-spacing: 0;
+        line-height: 1;
+        outline: none;
+        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+    }
+    button, html input[type=button], input[type=reset], input[type=submit] {
+        -webkit-appearance: button;
+        cursor: pointer;
+    }
+    button, select {
+        text-transform: none;
+    }
+    .lWmpR1 {
+        right: 5px;
+    }
+    
+    .CAvqYR, .lWmpR1 {
+        border: 0 !important;
+    }
+      
+}
