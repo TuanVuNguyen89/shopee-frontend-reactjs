@@ -26,7 +26,7 @@ function App() {
         <Slider />
         <Nav />
         <Switch>
-          <Route path="/Productdescription/Productdescription">
+          <Route path="/product" exact>
             <Productdescription />
           </Route>
           <Route path="/product1">

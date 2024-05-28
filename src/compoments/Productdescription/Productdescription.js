@@ -1,8 +1,9 @@
 
 import './Productdescription.scss';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useLocation } from 'react-router-dom';
 import { faCommentSms } from '@fortawesome/free-solid-svg-icons';
 
 function PreWithLimit({ text, limit }) {
@@ -27,6 +28,13 @@ function PreWithLimit({ text, limit }) {
     );
 }
 function Productdescription() {
+    const location = useLocation();
+    const { id } = location.state || {};
+
+    useEffect(() => {
+        console.log(">>> this is product ID: ", id);
+    });
+
     const [mainImage, setMainImage] = useState('https://down-vn.img.susercontent.com/file/e7dae1dbef95bd63efcc5b461df5090a');
     const [startIdx, setStartIdx] = useState(0);
     const [isExpanded, setIsExpanded] = useState(false);
@@ -42,8 +50,6 @@ function Productdescription() {
             setIsExpanded(true);
         }
     };
-
-
 
     const handleNext = () => {
         if (startIdx < 1) {

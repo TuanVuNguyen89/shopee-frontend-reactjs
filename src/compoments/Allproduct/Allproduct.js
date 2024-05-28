@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { readProductInfo } from '../../services/productService'
 import React from 'react';
 import Productdescription from '../Productdescription/Productdescription';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import ReactPaginate from "react-paginate";
 import '../Allproduct/Allproduct.scss';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -20,6 +20,7 @@ import { Buffer } from 'buffer';
 
 
 const Allproduct = (props) => {
+    const history = useHistory();
     const [listProduct, setListProduct] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [currentLimit, setCurrentLimit] = useState(10);
@@ -63,6 +64,10 @@ const Allproduct = (props) => {
         //await fetchUsers(event.selected + 1);
     };
 
+    const getProduct = (id) => {
+        history.push('/product', { id });
+    };
+
     return (
         <div className="allBackground">
             <div className="recoment">
@@ -76,7 +81,7 @@ const Allproduct = (props) => {
                             <div className="product col-xs-2 mt-2">
                                 <div className="shopee_ic">
                                     <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                                        <a className="contents" href={`/product/${product.id}`}>
+                                        <button className="contents" onClick={() => getProduct(product.id)}>
                                             <div className="flex flex-col bg-white cursor-pointer h-full">
                                                 <div className="flex flex-col bg-white cursor-pointer h-full">
                                                     <img src={product.image} alt={`${product.name}`} className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
@@ -99,7 +104,7 @@ const Allproduct = (props) => {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +124,7 @@ const Allproduct = (props) => {
                             <div className="product col-xs-2 mt-2">
                                 <div className="shopee_ic">
                                     <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                                        <a className="contents" href={`/product/${product.id}`}>
+                                        <button className="contents" onClick={() => getProduct(product.id)}>
                                             <div className="flex flex-col bg-white cursor-pointer h-full">
                                                 <div className="flex flex-col bg-white cursor-pointer h-full">
                                                     <img src={product.image} alt={`${product.name}`} className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
@@ -142,7 +147,7 @@ const Allproduct = (props) => {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
