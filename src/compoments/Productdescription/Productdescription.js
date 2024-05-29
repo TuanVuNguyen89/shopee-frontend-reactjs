@@ -46,14 +46,18 @@ function Productdescription() {
 
 
     const handleNext = () => {
-        if (startIdx < 1) {
+        if (startIdx < thumbnails.length - 5) {
             setStartIdx((prevIdx) => prevIdx + 1);
+        } else {
+            setStartIdx(0);
         }
     };
-
+    
     const handlePrevious = () => {
         if (startIdx > 0) {
             setStartIdx((prevIdx) => prevIdx - 1);
+        } else {
+            setStartIdx(thumbnails.length - 1); 
         }
     };
 
@@ -81,6 +85,10 @@ function Productdescription() {
         {
             url: "https://down-vn.img.susercontent.com/file/b3b7205ddd6212807882574ebaa47323",
             alt: "Thumbnail 6"
+        },
+        {
+            url: "https://down-vn.img.susercontent.com/file/b3b7205ddd6212807882574ebaa47323",
+            alt: "Thumbnail 7"
         }
     ];
 
