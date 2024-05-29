@@ -12,6 +12,9 @@ import { faArrowRight, faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Sliderproduct from '../Allproduct/Sliderproduct/Sliderproduct';
 import product2 from '../img/cn-11134207-7r98o-lq1z2hqjp1qw5b.jpg'
+import product3 from '../img/ao3.jpg'
+import product4 from '../img/sg-11134201-7qvdo-lf2oc2bistpl1f.jpg'
+import product5 from '../img/441909958_418564230998410_7818316671164817591_n.png'
 import banner1 from '../img/vn-50009109-9f55e03457f53c21641e034794aa44a0_xxhdpi.jpg'
 import banner2 from '../img/vn-50009109-eabbfa2e8ba38fa0d3ba2471c794a392_xxhdpi.jpg'
 import banner3 from '../img/vn-50009109-7ff80d285f5ba47e46094b56c68d5f6a_xxhdpi.jpg'

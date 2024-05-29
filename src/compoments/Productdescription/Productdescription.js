@@ -5,6 +5,8 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useLocation } from 'react-router-dom';
 import { faCommentSms } from '@fortawesome/free-solid-svg-icons';
+import { readProductInfoWithId, readImageInfoWithId } from '../../services/productService';
+import { Buffer } from 'buffer';
 
 function PreWithLimit({ text, limit }) {
     const [expanded, setExpanded] = useState(false);
@@ -27,18 +29,71 @@ function PreWithLimit({ text, limit }) {
         </pre>
     );
 }
-function Productdescription() {
+const Productdescription = (props) => {
     const location = useLocation();
     const { id } = location.state || {};
 
-    useEffect(() => {
-        console.log(">>> this is product ID: ", id);
-    });
-
-    const [mainImage, setMainImage] = useState('https://down-vn.img.susercontent.com/file/e7dae1dbef95bd63efcc5b461df5090a');
+    const [mainImage, setMainImage] = useState('');
     const [startIdx, setStartIdx] = useState(0);
     const [isExpanded, setIsExpanded] = useState(false);
     const [linesToShow, setLinesToShow] = useState(9);
+    const [thumbnails, setThumbnails] = useState([]);
+    const [productInfo, setProductInfo] = useState([]);
+
+    useEffect(() => {
+        fetchProduct();
+        fetchImages();
+
+        //console.log(">>> check thumbnails", thumbnails);
+    }, []);
+
+    useEffect(() => {
+        console.log(">>> check productInfo", productInfo);
+    }, [productInfo]);
+
+    const convertToImage = async (image) => {
+        let imageBase64 = '';
+        if (image) {
+            imageBase64 = new Buffer(image, 'base64').toString('binary');
+        }
+
+        return imageBase64;
+    }
+
+    const fetchImages = async () => {
+        //console.log(">>> check page&limit", currentPage, currentLimit);
+        let response = await readImageInfoWithId(id);
+
+        //console.log(">>> check response", response);
+        if (response && response.DT.EC === 0) {
+            const images = response.DT.DT;
+
+            const updatedImages = await Promise.all(images.map(async (item) => {
+                item.image = await convertToImage(item.image);
+                return item;
+            }));
+
+            updatedImages.map((image, index) => {
+                setThumbnails(thumbnails => [...thumbnails, image.image]);
+            })
+        }
+    }
+
+    const fetchProduct = async () => {
+        //console.log(">>> check page&limit", currentPage, currentLimit);
+        let response = await readProductInfoWithId(id);
+
+        //console.log(">>> check response", response);
+        if (response && response.DT.EC === 0) {
+            let product = response.DT.DT;
+
+            product.image = await convertToImage(product.image);
+            setThumbnails(thumbnails => [...thumbnails, product.image]);
+            setMainImage(product.image);
+            setProductInfo(product);
+            // setListProduct(updatedProducts);
+        }
+    };
 
     const toggleExpand = () => {
         setIsExpanded(!isExpanded);
@@ -63,33 +118,6 @@ function Productdescription() {
         }
     };
 
-    const thumbnails = [
-        {
-            url: "https://down-vn.img.susercontent.com/file/e7dae1dbef95bd63efcc5b461df5090a",
-            alt: "Thumbnail 1"
-        },
-        {
-            url: "https://down-vn.img.susercontent.com/file/f86370f91d761766e935d0bc225da135",
-            alt: "Thumbnail 2"
-        },
-        {
-            url: "https://down-vn.img.susercontent.com/file/c7094a5f60cb7ebbb3c0fda1de1f96d1",
-            alt: "Thumbnail 3"
-        },
-        {
-            url: "https://down-vn.img.susercontent.com/file/f95d68eda8c707a0f306a7a2fc636eb2",
-            alt: "Thumbnail 4"
-        },
-        {
-            url: "https://down-vn.img.susercontent.com/file/901982047294e8e5c35cf8dc5dc03e72",
-            alt: "Thumbnail 5"
-        },
-        {
-            url: "https://down-vn.img.susercontent.com/file/b3b7205ddd6212807882574ebaa47323",
-            alt: "Thumbnail 6"
-        }
-    ];
-
     const renderThumbnails = () => {
         return thumbnails.slice(startIdx, startIdx + 5).map((thumbnail, index) => (
             <div key={index} className="UBG7wZ">
@@ -98,10 +126,10 @@ function Productdescription() {
                         <picture>
                             <img
                                 className="IMAW1w"
-                                src={thumbnail.url}
-                                alt={thumbnail.alt}
-                                onMouseEnter={() => setMainImage(thumbnail.url)}
-                                onMouseLeave={() => setMainImage(thumbnail.url)}
+                                src={thumbnail}
+                                alt={`Product ${index}`}
+                                onMouseEnter={() => setMainImage(thumbnail)}
+                                onMouseLeave={() => setMainImage(thumbnail)}
                             />
                         </picture>
                     </div>
@@ -112,16 +140,16 @@ function Productdescription() {
     };
 
     return (
-        <div class="allBackground2">
-            <div class="container rounded">
-                <section class="Allpicture">
-                    <div class="flex flex-column">
-                        <div class="shopee-image-container">
+        <div className="allBackground2">
+            <div className="container rounded">
+                <section className="Allpicture">
+                    <div className="flex flex-column">
+                        <div className="shopee-image-container">
                             <picture>
-                                <img class="IMAW1w" src={mainImage} alt="Main Image"></img>
+                                <img className="IMAW1w" src={mainImage} alt="Main Image"></img>
                             </picture>
                         </div>
-                        <div class="airUhU" >
+                        <div className="airUhU" >
                             {renderThumbnails()}
                             <button className="shopee-icon-button nVAzDy CAvqYR" tabIndex="-1" onClick={handlePrevious}>
                                 <img alt="icon arrow left bold" src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/productdetailspage/be6abcdf029c79bbafd9.svg" />
@@ -136,16 +164,16 @@ function Productdescription() {
                 <section className="flex flex-auto i9t0tr">
                     <div className="flex-auto flex-column  DXQgih">
                         <div className="WBVL_7">
-                            <img alt="shopee choice badge" class="uq_xEP" src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/productdetailspage/a60ce3c82eeb30458e75.svg"></img>
-                            <span>Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn</span>
+                            <img alt="shopee choice badge" className="uq_xEP" src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/productdetailspage/a60ce3c82eeb30458e75.svg"></img>
+                            <span>{productInfo.name}</span>
                         </div>
                         <div className="flex flex-column mt-3">
                             <div className="flex flex-column CWiSMQ">
                                 <section className="flex items-center" aria-live="polite">
                                     <div className="flex items-center QAc7_y">
-                                        <div className="qg2n76">₫169.292</div>
+                                        <div className="qg2n76">₫{productInfo.price}</div>
                                         <div className="flex items-center">
-                                            <div className="G27FPf"> 137.000VN₫
+                                            <div className="G27FPf"> {productInfo.price}VN₫
                                             </div>
                                         </div>
                                         <img alt="Shopee Choice" className="JZVgBK" src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/productdetailspage/e8b4e9be6b3aa3eb04dd.svg"></img>
@@ -186,7 +214,7 @@ Có thể nói về chiều cao và cân nặng để cung cấp cho chúng tôi
                         </div>
                         <div className="bwPwYa high-end-button-group">
                             <a href='https://www.facebook.com/' target="_blank" rel="noopener noreferrer">
-                                <button type="button" class="btn btn-solid-primary btn--l YuENex" aria-disabled="false" ><FontAwesomeIcon icon={faCommentSms} />Liên hệ Ngay</button>
+                                <button type="button" className="btn btn-solid-primary btn--l YuENex" aria-disabled="false" ><FontAwesomeIcon icon={faCommentSms} />Liên hệ Ngay</button>
                             </a>
                         </div>
                     </div>
