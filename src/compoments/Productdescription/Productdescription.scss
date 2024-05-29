@@ -498,4 +498,68 @@
         font-weight: 500;
     border: none;
     }
+    // Media query cho thiết bị có độ rộng nhỏ hơn hoặc bằng 768px (tablets và mobile)
+@media (max-width: 1200px) {
+    .container{
+        display: block;
+        margin-top: 0px;
+        
+    }
+    .DXQgih {
+        box-sizing: border-box;
+        padding: 0 ;
+        width: auto;
+    }
+    .WBVL_7 {
+        display: -webkit-box;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 24px;
+        max-width: 100%;
+}
+.Allpicture {
+    flex-shrink: 0;
+     padding: 0;
+    width: auto;
+}
+}
+
+  // Media query cho thiết bị có độ rộng nhỏ hơn hoặc bằng 480px (mobile)
+  @media (max-width: 700px) {
+    .container{
+        display: block;
+        margin-top: 0px;
+        
+    }
+    .DXQgih {
+        box-sizing: border-box;
+        padding: 0 ;
+        width: auto;
+    }
+    .WBVL_7 {
+        display: -webkit-box;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 24px;
+        max-width: 100%;
+}
+.Allpicture {
+    flex-shrink: 0;
+     padding: 0;
+    width: auto;
+}
+.i9t0tr{
+    width: auto;
+}
+.flex {
+    display: block;
+}
+
+}
 }
