@@ -6,7 +6,8 @@
     display: flex;
     visibility: visible;
     width: auto;
-    .container{
+
+    .container {
         display: flex;
         margin-top: 20px;
         background-color: white;
@@ -14,21 +15,25 @@
         --tw-shadow-colored: 0 1px 20px 0 var(--tw-shadow-color);
         box-shadow: var(--tw-ring-offset-shadow, 0 0 transparent), var(--tw-ring-shadow, 0 0 transparent), var(--tw-shadow);
     }
-    .Allpicture{
-    flex-shrink: 0;
-    padding: 15px;
-    width: 450px;
+
+    .Allpicture {
+        flex-shrink: 0;
+        padding: 15px;
+        width: 450px;
     }
+
     .shopee-image-container {
         padding-bottom: 100%;
         position: relative;
         width: 100%;
     }
+
     .IMAW1w {
         display: block;
         object-fit: contain;
         object-position: center;
     }
+
     .IMAW1w {
         height: 100%;
         left: 0;
@@ -36,86 +41,87 @@
         top: 0;
         width: 100%;
     }
+
     .airUhU {
         margin: 5px -5px;
         position: relative;
     }
+
     .UBG7wZ {
         box-sizing: border-box;
         display: inline-block;
         padding: 1px;
         width: 20%;
     }
+
     .jA1mTx {
         position: relative;
     }
+
     .wOzCmT {
         left: 0;
         position: absolute;
         top: 0;
     }
+
     .wOzCmT {
         border: 2px solid var(--brand-primary-color, #ee4d2d);
         bottom: 0;
         right: 0;
     }
-    .bh76f7, .wOzCmT {
+
+    .bh76f7,
+    .wOzCmT {
         left: 0;
         position: absolute;
         top: 0;
     }
+
     .wOzCmT {
         border: 2px solid var(--brand-primary-color, #ee4d2d);
         bottom: 0;
         right: 0;
     }
+
     .jA1mTx:hover {
         cursor: pointer;
-    }.wOzCmT  {
+    }
+
+    .wOzCmT {
         display: none;
     }
-    
-    .wOzCmT:hover  {
+
+    .wOzCmT:hover {
         display: block;
     }
+
     .UBG7wZ {
-        border: 3px solid transparent; /* Thiết lập viền border mặc định */
-        transition: border-color 0.3s; /* Hiệu ứng chuyển đổi màu của viền border */
-      }
-      
-      /* Khi hover vào .UBG7wZ, viền border sẽ chuyển sang màu đỏ */
-      .UBG7wZ:hover {
+        border: 3px solid transparent;
+        /* Thiết lập viền border mặc định */
+        transition: border-color 0.3s;
+        /* Hiệu ứng chuyển đổi màu của viền border */
+    }
+
+    /* Khi hover vào .UBG7wZ, viền border sẽ chuyển sang màu đỏ */
+    .UBG7wZ:hover {
         border-color: red;
-      }
-      .slide {
+    }
+
+    .slide {
         transform: translateX(-110%);
-      }
-      padding: 0;
-      .shopee-icon-button {
-        background-color: transparent;
-        border: 1px solid rgba(0, 0, 0, .54);
-        padding: 0;
     }
-    
-    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
-        align-items: center;
-        border: 0;
-        cursor: pointer;
-        display: flex;
-        font-size: .875rem;
-        font-weight: 300;
-        justify-content: center;
-        letter-spacing: 0;
-        line-height: 1;
-        outline: none;
-        transition: background-color .1s cubic-bezier(.4,0,.6,1);
-    }
+
+    padding: 0;
+
     .shopee-icon-button {
         background-color: transparent;
         border: 1px solid rgba(0, 0, 0, .54);
         padding: 0;
     }
-    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+
+    .shopee-button-no-outline,
+    .shopee-icon-button,
+    .shopee-image-button {
         align-items: center;
         border: 0;
         cursor: pointer;
@@ -126,14 +132,18 @@
         letter-spacing: 0;
         line-height: 1;
         outline: none;
-        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+        transition: background-color .1s cubic-bezier(.4, 0, .6, 1);
     }
+
     .shopee-icon-button {
         background-color: transparent;
         border: 1px solid rgba(0, 0, 0, .54);
         padding: 0;
     }
-    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+
+    .shopee-button-no-outline,
+    .shopee-icon-button,
+    .shopee-image-button {
         align-items: center;
         border: 0;
         cursor: pointer;
@@ -144,14 +154,40 @@
         letter-spacing: 0;
         line-height: 1;
         outline: none;
-        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+        transition: background-color .1s cubic-bezier(.4, 0, .6, 1);
     }
-    .CAvqYR, .lWmpR1 {
+
+    .shopee-icon-button {
+        background-color: transparent;
+        border: 1px solid rgba(0, 0, 0, .54);
+        padding: 0;
+    }
+
+    .shopee-button-no-outline,
+    .shopee-icon-button,
+    .shopee-image-button {
+        align-items: center;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        font-size: .875rem;
+        font-weight: 300;
+        justify-content: center;
+        letter-spacing: 0;
+        line-height: 1;
+        outline: none;
+        transition: background-color .1s cubic-bezier(.4, 0, .6, 1);
+    }
+
+    .CAvqYR,
+    .lWmpR1 {
         border: 0 !important;
     }
+
     .CAvqYR {
         left: 5px;
     }
+
     .nVAzDy {
         background-color: rgba(0, 0, 0, .2) !important;
         border: 0;
@@ -162,12 +198,16 @@
         transform: translateY(-50%);
         width: 20px;
     }
+
     .shopee-icon-button {
         background-color: transparent;
         border: 1px solid rgba(0, 0, 0, .54);
         padding: 0;
     }
-    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+
+    .shopee-button-no-outline,
+    .shopee-icon-button,
+    .shopee-image-button {
         align-items: center;
         border: 0;
         cursor: pointer;
@@ -178,14 +218,18 @@
         letter-spacing: 0;
         line-height: 1;
         outline: none;
-        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+        transition: background-color .1s cubic-bezier(.4, 0, .6, 1);
     }
+
     .shopee-icon-button {
         background-color: transparent;
         border: 1px solid rgba(0, 0, 0, .54);
         padding: 0;
     }
-    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+
+    .shopee-button-no-outline,
+    .shopee-icon-button,
+    .shopee-image-button {
         align-items: center;
         border: 0;
         cursor: pointer;
@@ -196,14 +240,18 @@
         letter-spacing: 0;
         line-height: 1;
         outline: none;
-        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+        transition: background-color .1s cubic-bezier(.4, 0, .6, 1);
     }
+
     .shopee-icon-button {
         border: 1px solid rgba(0, 0, 0, .54);
         background-color: transparent;
         padding: 0;
     }
-    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+
+    .shopee-button-no-outline,
+    .shopee-icon-button,
+    .shopee-image-button {
         outline: none;
         cursor: pointer;
         border: 0;
@@ -214,14 +262,18 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+        transition: background-color .1s cubic-bezier(.4, 0, .6, 1);
     }
+
     .shopee-icon-button {
         background-color: initial;
         border: 1px solid rgba(0, 0, 0, .54);
         padding: 0;
     }
-    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+
+    .shopee-button-no-outline,
+    .shopee-icon-button,
+    .shopee-image-button {
         align-items: center;
         border: 0;
         cursor: pointer;
@@ -232,24 +284,39 @@
         letter-spacing: 0;
         line-height: 1;
         outline: none;
-        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+        transition: background-color .1s cubic-bezier(.4, 0, .6, 1);
     }
-    button, html input[type=button], input[type=reset], input[type=submit] {
+
+    button,
+    html input[type=button],
+    input[type=reset],
+    input[type=submit] {
         -webkit-appearance: button;
         cursor: pointer;
     }
-    button, select {
+
+    button,
+    select {
         text-transform: none;
     }
+
     button {
         overflow: visible;
     }
-    button, input, optgroup, select, textarea {
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
         color: inherit;
         font: inherit;
         margin: 0;
     }
-    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+
+    .shopee-button-no-outline,
+    .shopee-icon-button,
+    .shopee-image-button {
         align-items: center;
         border: 0;
         cursor: pointer;
@@ -260,9 +327,12 @@
         letter-spacing: 0;
         line-height: 1;
         outline: none;
-        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+        transition: background-color .1s cubic-bezier(.4, 0, .6, 1);
     }
-    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+
+    .shopee-button-no-outline,
+    .shopee-icon-button,
+    .shopee-image-button {
         align-items: center;
         border: 0;
         cursor: pointer;
@@ -273,9 +343,12 @@
         letter-spacing: 0;
         line-height: 1;
         outline: none;
-        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+        transition: background-color .1s cubic-bezier(.4, 0, .6, 1);
     }
-    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+
+    .shopee-button-no-outline,
+    .shopee-icon-button,
+    .shopee-image-button {
         align-items: center;
         border: 0;
         cursor: pointer;
@@ -286,8 +359,9 @@
         letter-spacing: 0;
         line-height: 1;
         outline: none;
-        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+        transition: background-color .1s cubic-bezier(.4, 0, .6, 1);
     }
+
     .nVAzDy {
         background-color: rgba(0, 0, 0, .2) !important;
         border: 0;
@@ -298,7 +372,10 @@
         transform: translateY(-50%);
         width: 20px;
     }
-    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+
+    .shopee-button-no-outline,
+    .shopee-icon-button,
+    .shopee-image-button {
         align-items: center;
         border: 0;
         cursor: pointer;
@@ -309,9 +386,12 @@
         letter-spacing: 0;
         line-height: 1;
         outline: none;
-        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+        transition: background-color .1s cubic-bezier(.4, 0, .6, 1);
     }
-    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+
+    .shopee-button-no-outline,
+    .shopee-icon-button,
+    .shopee-image-button {
         align-items: center;
         border: 0;
         cursor: pointer;
@@ -322,9 +402,12 @@
         letter-spacing: 0;
         line-height: 1;
         outline: none;
-        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+        transition: background-color .1s cubic-bezier(.4, 0, .6, 1);
     }
-    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+
+    .shopee-button-no-outline,
+    .shopee-icon-button,
+    .shopee-image-button {
         outline: none;
         cursor: pointer;
         border: 0;
@@ -335,9 +418,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+        transition: background-color .1s cubic-bezier(.4, 0, .6, 1);
     }
-    .shopee-button-no-outline, .shopee-icon-button, .shopee-image-button {
+
+    .shopee-button-no-outline,
+    .shopee-icon-button,
+    .shopee-image-button {
         align-items: center;
         border: 0;
         cursor: pointer;
@@ -348,34 +434,46 @@
         letter-spacing: 0;
         line-height: 1;
         outline: none;
-        transition: background-color .1s cubic-bezier(.4,0,.6,1);
+        transition: background-color .1s cubic-bezier(.4, 0, .6, 1);
     }
-    button, html input[type=button], input[type=reset], input[type=submit] {
+
+    button,
+    html input[type=button],
+    input[type=reset],
+    input[type=submit] {
         -webkit-appearance: button;
         cursor: pointer;
     }
-    button, select {
+
+    button,
+    select {
         text-transform: none;
     }
+
     .lWmpR1 {
         right: 5px;
     }
-    
-    .CAvqYR, .lWmpR1 {
+
+    .CAvqYR,
+    .lWmpR1 {
         border: 0 !important;
     }
+
     .i9t0tr {
         flex: 1 0 auto;
         width: 0;
     }
+
     .DXQgih {
         box-sizing: border-box;
         padding: 1.25rem 2.1875rem 0 1.25rem;
         width: 100%;
     }
+
     .flex-auto {
         flex: 1 1 auto;
     }
+
     .WBVL_7 {
         display: -webkit-box;
         text-overflow: ellipsis;
@@ -391,23 +489,30 @@
         overflow-wrap: break-word;
         vertical-align: sub;
     }
-    .flex{
+
+    .flex {
         display: flex;
-    } ;
+    }
+
+    ;
+
     .CWiSMQ {
         background: #ebebeb;
         padding: 15px 20px;
         margin-bottom: 15px;
     }
+
     .QAc7_y {
         flex-basis: 625px;
         flex-wrap: wrap;
         min-height: 2.25rem;
         width: 625px;
     }
+
     .items-center {
         align-items: center;
     }
+
     .qg2n76 {
         color: #929292;
         font-size: 1rem;
@@ -415,22 +520,26 @@
         -webkit-text-decoration: line-through;
         text-decoration: line-through;
     }
+
     .G27FPf {
         color: #ee4d2d;
         font-size: 1.5rem;
         font-weight: 500;
     }
+
     .JZVgBK {
         align-self: center;
         grid-row-end: 3;
         grid-row-start: 1;
         margin-left: 20px;
     }
+
     .KIoPj6 {
         color: #222;
         margin-bottom: 10px;
         margin-left: -4px;
     }
+
     pre {
         font-family: var(--bs-body-font-family);
         display: block;
@@ -441,6 +550,7 @@
         font-size: .875em;
         white-space: pre-wrap;
     }
+
     .btn-solid-primary {
         background: #ee4d2d;
         color: #fff;
@@ -448,15 +558,19 @@
         overflow: visible;
         position: relative;
     }
-    .btn--l, .btn--xl {
+
+    .btn--l,
+    .btn--xl {
         max-width: 250px;
         min-width: 80px;
     }
+
     .btn--l {
         font-size: 16px;
         height: 48px;
         padding: 0 20px;
     }
+
     .btn {
         display: -webkit-box;
         overflow: hidden;
@@ -475,91 +589,112 @@
         text-transform: capitalize;
         width: 200px;
         margin-left: auto;
-    }    
-    a{
+    }
+
+    a {
         text-decoration: none;
         color: #ebebeb;
     }
-    .btn:hover{
+
+    .btn:hover {
         background-color: #ff7458;
     }
+
     #pre-text {
         white-space: pre-wrap;
-        
+
         overflow: hidden;
     }
-    
+
     #view-more-btn {
         display: none;
         font-weight: 900;
-    border: none;
+        border: none;
     }
-    .more{
+
+    .more {
         font-weight: 500;
-    border: none;
+        border: none;
     }
+
     // Media query cho thiết bị có độ rộng nhỏ hơn hoặc bằng 768px (tablets và mobile)
-@media (max-width: 1200px) {
-    .container{
-        display: block;
-        margin-top: 0px;
-        
-    }
-    .DXQgih {
-        box-sizing: border-box;
-        padding: 0 ;
-        width: auto;
-    }
-    .WBVL_7 {
-        display: -webkit-box;
-        text-overflow: ellipsis;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        font-size: 15px;
-        font-weight: 500;
-        line-height: 24px;
-        max-width: 100%;
-}
-.Allpicture {
-    flex-shrink: 0;
-     padding: 0;
-    width: auto;
-}
-}
+    @media (max-width: 1200px) {
+        .i9t0tr {
+            width: auto;
+        }
 
-  // Media query cho thiết bị có độ rộng nhỏ hơn hoặc bằng 480px (mobile)
-  @media (max-width: 700px) {
-    .container{
-        display: block;
-        margin-top: 0px;
-        
-    }
-    .DXQgih {
-        box-sizing: border-box;
-        padding: 0 ;
-        width: auto;
-    }
-    .WBVL_7 {
-        display: -webkit-box;
-        text-overflow: ellipsis;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        font-size: 15px;
-        font-weight: 500;
-        line-height: 24px;
-        max-width: 100%;
-}
-.Allpicture {
-    flex-shrink: 0;
-     padding: 0;
-    width: auto;
-}
-.i9t0tr{
-    width: auto;
-}
-.flex {
-    display: block;
-}
+        .flex {
+            display: block;
+        }
 
-}
+        .container {
+            display: block;
+            margin-top: 0px;
+
+        }
+
+        .DXQgih {
+            box-sizing: border-box;
+            padding: 0;
+            width: auto;
+        }
+
+        .WBVL_7 {
+            display: -webkit-box;
+            text-overflow: ellipsis;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 24px;
+            max-width: 100%;
+        }
+
+        .Allpicture {
+            flex-shrink: 0;
+            padding: 0;
+            width: auto;
+        }
+    }
+
+    // Media query cho thiết bị có độ rộng nhỏ hơn hoặc bằng 480px (mobile)
+    @media (max-width: 700px) {
+        .container {
+            display: block;
+            margin-top: 0px;
+
+        }
+
+        .DXQgih {
+            box-sizing: border-box;
+            padding: 0;
+            width: auto;
+        }
+
+        .WBVL_7 {
+            display: -webkit-box;
+            text-overflow: ellipsis;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 24px;
+            max-width: 100%;
+        }
+
+        .Allpicture {
+            flex-shrink: 0;
+            padding: 0;
+            width: auto;
+        }
+
+        .i9t0tr {
+            width: auto;
+        }
+
+        .flex {
+            display: block;
+        }
+
+    }
 }

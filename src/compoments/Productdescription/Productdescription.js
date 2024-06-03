@@ -10,7 +10,7 @@ import { Buffer } from 'buffer';
 
 function PreWithLimit({ text, limit }) {
     const [expanded, setExpanded] = useState(false);
-    const lines = text.split('\n');
+    const lines = text.split('\r\n');
 
     const handleClick = () => {
         setExpanded(!expanded);
@@ -29,6 +29,7 @@ function PreWithLimit({ text, limit }) {
         </pre>
     );
 }
+
 const Productdescription = (props) => {
     const location = useLocation();
     const { id } = location.state || {};
@@ -47,10 +48,6 @@ const Productdescription = (props) => {
         //console.log(">>> check thumbnails", thumbnails);
     }, []);
 
-    useEffect(() => {
-        console.log(">>> check productInfo", productInfo);
-    }, [productInfo]);
-
     const convertToImage = async (image) => {
         let imageBase64 = '';
         if (image) {
@@ -61,7 +58,6 @@ const Productdescription = (props) => {
     }
 
     const fetchImages = async () => {
-        //console.log(">>> check page&limit", currentPage, currentLimit);
         let response = await readImageInfoWithId(id);
 
         //console.log(">>> check response", response);
@@ -80,7 +76,6 @@ const Productdescription = (props) => {
     }
 
     const fetchProduct = async () => {
-        //console.log(">>> check page&limit", currentPage, currentLimit);
         let response = await readProductInfoWithId(id);
 
         //console.log(">>> check response", response);
@@ -107,14 +102,20 @@ const Productdescription = (props) => {
     };
 
     const handleNext = () => {
-        if (startIdx < 1) {
+        if (startIdx < thumbnails.length - 5) {
             setStartIdx((prevIdx) => prevIdx + 1);
+        }
+        else {
+            setStartIdx(0);
         }
     };
 
     const handlePrevious = () => {
         if (startIdx > 0) {
             setStartIdx((prevIdx) => prevIdx - 1);
+        }
+        else {
+            setStartIdx(thumbnails.length - 1);
         }
     };
 
@@ -185,26 +186,12 @@ const Productdescription = (props) => {
                             <div className="flex flex-column">
                                 <div className="KIoPj6 aboutProduct">
                                     <h5>Mô tả sản phẩm </h5>
-                                    <PreWithLimit
-                                        text={`Thông TIN ĐO LƯỜNG
-[Thông tin size áo đi biển] Công ty: CM
-Kích thước, chiều dài, Chiều rộng ngực, Chiều rộng vai, Chiều dài tay áo, Vòng bít
-M 69 96 43 24 19
-L 71 100 45 25 20
-Xl 73 104 47 26 21
-2xl 75 108 49 27 22
-3xl 77 112 51 28 23
-4xl 79 116 53 29 24
-5xl 80 120 55 30 25
-Lưu ý: Do các phương pháp đo lường khác nhau, sẽ có sự khác biệt1-3CMError, dữ liệu liên quan chỉ mang tính chất tham khảo, tùy thuộc vào đối tượng thực tế nhận được.
-Vải / kết cấu của vật liệu: sợi polyeste / polyester (sợi polyeste)
-Nội dung thành phần: 91% (bao gồm) -95% (bao gồm)
-Chiều dài tay áo: Tay áo ngắn
-Chiều dài quần: Capris
-Phong cách: thời gian giải trí
-Có thể nói về chiều cao và cân nặng để cung cấp cho chúng tôi, chúng tôi đưa ra lời khuyên chuyên nghiệp cho bạn`}
-                                        limit={linesToShow}
-                                    />
+                                    {productInfo.description && (
+                                        <PreWithLimit
+                                            text={productInfo.description}
+                                            limit={linesToShow}
+                                        />
+                                    )}
                                     {!isExpanded && (
                                         <button id='view-more-btn' onClick={handleViewMore}>...Xem thêm</button>
                                     )}
