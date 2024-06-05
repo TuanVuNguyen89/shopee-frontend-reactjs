@@ -1,7 +1,7 @@
 import React from 'react';
 import './Slider.scss';
 import background from '../img/nenao.jpg'
-import logo from '../img/logo.png'
+import logo from '../img/Designer.png'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -34,7 +34,7 @@ const Slider = (props) => {
             <div className="Slider-container" >
                 <div className="Background">
                     <div className="row container Logo-container">
-                        <div className="Logo col-3 rounded">
+                        <div className="Logo col-3">
                             <a href={listInfo.contact} target="_blank" rel="noopener noreferrer">
                                 <img className="Logo-img" src={logo} alt="Description of the image" />
                             </a>
