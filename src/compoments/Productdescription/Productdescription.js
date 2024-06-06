@@ -104,8 +104,7 @@ const Productdescription = (props) => {
     const handleNext = () => {
         if (startIdx < thumbnails.length - 5) {
             setStartIdx((prevIdx) => prevIdx + 1);
-        }
-        else {
+        } else {
             setStartIdx(0);
         }
     };
@@ -113,8 +112,7 @@ const Productdescription = (props) => {
     const handlePrevious = () => {
         if (startIdx > 0) {
             setStartIdx((prevIdx) => prevIdx - 1);
-        }
-        else {
+        } else {
             setStartIdx(thumbnails.length - 1);
         }
     };
