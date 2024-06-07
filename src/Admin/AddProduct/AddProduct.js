@@ -43,6 +43,13 @@ function Addproduct() {
     const [isEditing, setIsEditing] = useState(false);
     const [product, setProduct] = useState({});
     const [thumbnails, setThumbnails] = useState([]);
+    const handleDeleteThumbnail = (index) => {
+        const updatedThumbnails = [...thumbnails];
+        updatedThumbnails.splice(index, 1);
+        setThumbnails(updatedThumbnails);
+    };
+    
+    
 
     const handleDeleteUser = async () => {
         setIsShowModalDelete(true);
@@ -144,6 +151,7 @@ function Addproduct() {
                             />
                         </picture>
                     </div>
+                    <button onClick={() => handleDeleteThumbnail(index)}>Xóa</button>
                     <div className="wOzCmT thumbnail-selected-mask"></div>
                 </div>
             </div>
