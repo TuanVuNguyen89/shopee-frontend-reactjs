@@ -9,26 +9,19 @@ import Test from '../compoments/Test/Test'
 import Product1 from '../compoments/Product1/Product1'
 import Product2 from '../compoments/Product2/Product2'
 import Product3 from '../compoments/Product3/Product3'
-import Adminlogin from '../Admin/Adminlogin';
+import Adminlogin from '../Admin/Adminlogin/Adminlogin';
 import Allproduct from '../compoments/Allproduct/Allproduct';
 import Productdescription from '../compoments/Productdescription/Productdescription';
+import Addproduct from '../Admin/AddProduct/AddProduct';
+import Adminpage from '../Admin/Adminpage/Adminpage'
 
 const AppRoutes = (props) => {
-    const Project = () => {
-        return (
-            <span>project</span>
-        )
-    }
-
-    useEffect(() => {
-        //console.log(">>> check: ", user);
-        console.log(">>> current url", window.location.pathname);
-    }, []);
 
     return (<>
         <Switch>
             <PrivateRoutes path="/test" component={Test} />
-
+            <PrivateRoutes path="/admin-page" component={Adminpage} />
+            <PrivateRoutes path='/AddProduct' component={Addproduct} />
             <Route path="/product" exact>
                 <Productdescription />
             </Route>

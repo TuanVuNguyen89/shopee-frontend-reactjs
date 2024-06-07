@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getUserAccount } from '../services/loginService'
 const UserContext = React.createContext(null);
+const nonSecurePaths = ['/', '/admin', '/product'];
 
 const UserProvider = ({ children }) => {
     const userDefault = {
@@ -13,28 +14,30 @@ const UserProvider = ({ children }) => {
     const [user, setUser] = useState(userDefault);
 
     useEffect(() => {
-        const fetchUserAccount = async () => {
-            let response = await getUserAccount();
-
-            if (response && response.EC === 0) {
-                let roles = response.DT.roles;
-                let token = response.DT.token;
-
-                let data = {
-                    isAuthenticated: true,
-                    token,
-                    account: roles,
-                    isLoading: false
-                };
-
-                setUser(data);
-            } else {
-                setUser({ ...userDefault, isLoading: false });
-            }
-        };
-
         fetchUserAccount();
+        if (nonSecurePaths.includes(window.location.pathname))
+            setUser({ ...user, isLoading: false });
     }, []);
+
+    const fetchUserAccount = async () => {
+        let response = await getUserAccount();
+
+        if (response && response.EC === 0) {
+            let roles = response.DT.roles;
+            let token = response.DT.token;
+
+            let data = {
+                isAuthenticated: true,
+                token,
+                account: roles,
+                isLoading: false
+            };
+
+            setUser(data);
+        } else {
+            setUser({ ...userDefault, isLoading: false });
+        }
+    };
 
     useEffect(() => {
         console.log("user", user);

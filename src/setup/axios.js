@@ -1,6 +1,5 @@
 import axios from 'axios'
-//import { toast } from 'react-toastify'
-  
+
 // Set config defaults when creating the instance
 const instance = axios.create({
     baseURL: 'http://localhost:8080'
@@ -8,7 +7,7 @@ const instance = axios.create({
 
 instance.defaults.withCredentials = true;
 //Alter defaults after instance has been created
-//instance.defaults.headers.common['Authorization'] = 'AUTH_TOKEN 123';
+instance.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("jwt")}`;
 
 // Add a request interceptor
 // instance.interceptors.request.use(function (config) {
@@ -34,17 +33,17 @@ instance.interceptors.response.use(function (response) {
         case 401: {
             //toast.error('Unauthorized the user. Please login...');
             //window.location.href = '/login';
-            return Promise.reject(error);
+            return error.response.data;
         }
 
         case 403: {
             //toast.error(`you don't have permission to access this resource...`);
             //window.location.href = '/login';
-            return Promise.reject(error);
+            return error.response.data;
         }
 
         default: {
-            return Promise.reject(error);
+            return error.response.data;
         }
     }
     //return Promise.reject(error);

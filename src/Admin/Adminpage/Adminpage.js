@@ -1,37 +1,36 @@
 import React from 'react';
-import '../Allproduct/Allproduct.scss';
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import Productdescription from '../../compoments/Productdescription/Productdescription';
 import { useEffect, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import ReactPaginate from "react-paginate";
+import { readProductInfo } from '../../services/productService'
+import '../../compoments/Allproduct/Allproduct.scss';
+import '../Adminpage/Adminpage.scss';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { faArrowRight, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import Sliderproduct from '../Allproduct/Sliderproduct/Sliderproduct';
-import product from '../img/ao (1).jpg'
-import product2 from '../img/cn-11134207-7r98o-lq1z2hqjp1qw5b.jpg'
-import product3 from '../img/ao3.jpg'
-import product4 from '../img/sg-11134201-7qvdo-lf2oc2bistpl1f.jpg'
-import product5 from '../img/ao4.jpg'
-import banner1 from '../img/vn-50009109-9f55e03457f53c21641e034794aa44a0_xxhdpi.jpg'
-import banner2 from '../img/vn-50009109-eabbfa2e8ba38fa0d3ba2471c794a392_xxhdpi.jpg'
-import banner3 from '../img/vn-50009109-7ff80d285f5ba47e46094b56c68d5f6a_xxhdpi.jpg'
-import banner4 from '../img/ban4.jpg'
-import { readProductInfoWithType } from '../../services/productService'
+import Sliderproduct from '../../compoments/Allproduct/Sliderproduct/Sliderproduct';
+import banner1 from '../../compoments/img/vn-50009109-9f55e03457f53c21641e034794aa44a0_xxhdpi.jpg'
+import banner2 from '../../compoments/img/vn-50009109-eabbfa2e8ba38fa0d3ba2471c794a392_xxhdpi.jpg'
+import banner3 from '../../compoments/img/vn-50009109-7ff80d285f5ba47e46094b56c68d5f6a_xxhdpi.jpg'
+import banner4 from '../../compoments/img/ban4.jpg'
+import productadd from '../../compoments/img/addproduct-01.png'
 import { Buffer } from 'buffer';
 
-const Allproduct = (props) => {
-    const history = useHistory();
-    const getProduct = (id) => {
-        history.push('/product', { id });
-    };
 
+const AdminAllproduct = (props) => {
+    const history = useHistory();
+    const [listUsers, setListUsers] = useState([]);
     const [listProduct, setListProduct] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [currentLimit, setCurrentLimit] = useState(10);
     const [totalPages, setTotalPages] = useState(0);
-    const [currentCategoryId, setCurrentCategoryId] = useState(2);
+    useEffect(() => {
+        fetchProducts();
+    }, []);
+
     useEffect(() => {
         fetchProducts();
     }, [currentPage]);
@@ -47,7 +46,7 @@ const Allproduct = (props) => {
 
     const fetchProducts = async () => {
         //console.log(">>> check page&limit", currentPage, currentLimit);
-        let response = await readProductInfoWithType(currentPage, currentLimit, currentCategoryId);
+        let response = await readProductInfo(currentPage, currentLimit);
 
         //console.log(">>> check response", response);
         if (response && response.DT.EC === 0) {
@@ -62,7 +61,7 @@ const Allproduct = (props) => {
 
             setListProduct(updatedProducts);
         }
-    };
+    }
 
     const handlePageClick = async (event) => {
         //console.log(">>> check data event", event);
@@ -70,10 +69,29 @@ const Allproduct = (props) => {
         //await fetchUsers(event.selected + 1);
     };
 
+    const getProduct = (id) => {
+        history.push('/product', { id });
+    };
+
     return (
         <div className="allBackground">
             <div className="recoment">
                 <h5>GỢI Ý CHO BẠN</h5>
+            </div>
+            <div class="product mt-2 flex flex-column">
+                <div class="shopee_ic">
+                    <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
+                        <a class="contents" href='../AddProduct'>
+                            <div class="flex flex-col bg-white cursor-pointer h-full">
+                                <div class="flex flex-col bg-white cursor-pointer h-full">
+                                    <img src={productadd} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-1"></div>
             </div>
             <div className="row">
                 {
@@ -104,6 +122,9 @@ const Allproduct = (props) => {
 
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div className="overlay">
+                                                <button className="edit-btn">Edit</button>
                                             </div>
                                         </button>
                                     </div>
@@ -156,6 +177,7 @@ const Allproduct = (props) => {
             </div>
             {totalPages > 0 &&
                 <div className="user-footer">
+
                     <ReactPaginate
                         nextLabel=">"
                         onPageChange={handlePageClick}
@@ -185,4 +207,4 @@ const Allproduct = (props) => {
     );
 }
 
-export default Allproduct;
+export default AdminAllproduct;

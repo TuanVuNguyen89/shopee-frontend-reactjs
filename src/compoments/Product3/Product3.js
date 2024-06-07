@@ -71,8 +71,8 @@ const Allproduct = (props) => {
     };
 
     return (
-        <div class="allBackground">
-            <div class="recoment">
+        <div className="allBackground">
+            <div className="recoment">
                 <h5>GỢI Ý CHO BẠN</h5>
             </div>
             <div className="row">
@@ -113,7 +113,7 @@ const Allproduct = (props) => {
                     })
                 }
             </div>
-            <div class="Sliderproduct">
+            <div className="Sliderproduct">
                 <Sliderproduct arrImages={[banner1, banner2, banner3, banner4]} />
             </div>
             <div className="row">
