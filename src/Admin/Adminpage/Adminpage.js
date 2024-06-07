@@ -62,7 +62,7 @@ const AdminAllproduct = (props) => {
                         <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
                             <a class="contents" href='../AddProduct'>
                                 <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
+                                    <div class="relative z-0 w-full pt-full">
                                         <img src={productadd} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                     </div>
 
@@ -77,7 +77,7 @@ const AdminAllproduct = (props) => {
                         <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
                             <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
                                 <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
+                                    <div class="relative z-0 w-full pt-full">
                                         <img src={product2} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                     </div>
                                     <div class="p-2 flex-1 flex flex-col justify-between">
@@ -98,8 +98,7 @@ const AdminAllproduct = (props) => {
                                     </div>
                                 </div>
                                 <div className="overlay">
-                                    <button className="edit-btn">Edit</button>
-                                    <button className="upload-btn">Upload</button>
+                                    <a className="edit-btn" href='../Editproduct'>Edit</a>
                                 </div>
                             </a>
                         </div>
@@ -111,7 +110,7 @@ const AdminAllproduct = (props) => {
                         <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
                             <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
                                 <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
+                                    <div class="relative z-0 w-full pt-full">
                                         <img src={product3} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                     </div>
                                     <div class="p-2 flex-1 flex flex-col justify-between">
@@ -134,7 +133,6 @@ const AdminAllproduct = (props) => {
                                 </div>
                                 <div className="overlay">
                                     <button className="edit-btn">Edit</button>
-                                    <button className="upload-btn">Upload</button>
                                 </div>
                             </a>
                         </div>
@@ -146,7 +144,7 @@ const AdminAllproduct = (props) => {
                         <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
                             <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
                                 <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
+                                    <div class="relative z-0 w-full pt-full">
                                         <img src={product4} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                     </div>
                                     <div class="p-2 flex-1 flex flex-col justify-between">
@@ -176,7 +174,7 @@ const AdminAllproduct = (props) => {
                         <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
                             <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
                                 <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
+                                    <div class="relative z-0 w-full pt-full">
                                         <img src={product5} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                     </div>
                                     <div class="p-2 flex-1 flex flex-col justify-between">
@@ -210,7 +208,7 @@ const AdminAllproduct = (props) => {
                         <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
                             <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
                                 <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
+                                    <div class="relative z-0 w-full pt-full">
                                         <img src={product} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                     </div>
                                     <div class="p-2 flex-1 flex flex-col justify-between">
@@ -241,7 +239,7 @@ const AdminAllproduct = (props) => {
                         <div class="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
                             <a class="contents" href='https://www.youtube.com/watch?v=rO3Iq5i4osU'>
                                 <div class="flex flex-col bg-white cursor-pointer h-full">
-                                    <div class="flex flex-col bg-white cursor-pointer h-full">
+                                    <div class="relative z-0 w-full pt-full">
                                         <img src={product2} alt="Áo Sơ Mi Tay Ngắn Dáng Rộng In Họa Tiết Phong Cách Hawaii Nhanh Khô Thời Trang Đi Biển Cho Nam Và Nữ 7 Màu Lựa Chọn" class="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                     </div>
                                     <div class="p-2 flex-1 flex flex-col justify-between">

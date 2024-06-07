@@ -12,6 +12,7 @@ import Adminpage from './Admin/Adminpage/Adminpage';
 import Product1 from'./compoments/Product1/Product1'
 import Product2 from'./compoments/Product2/Product2'
 import Product3 from'./compoments/Product3/Product3'
+import Editproduct from './Admin/Editproduct/Editproduct';
 import {
   BrowserRouter as Router,
   Switch,
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route path="/AddProduct">
             <Addproduct/>
+          </Route>
+          <Route path="/Editproduct">
+            <Editproduct/>
           </Route>
           <Route path="/product1">
             <Product1/>
