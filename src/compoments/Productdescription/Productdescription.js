@@ -75,14 +75,20 @@ const Productdescription = (props) => {
         }
     }
 
+    useEffect(() => {
+        console.log("thumbnails", thumbnails);
+    }, [thumbnails]);
+
     const fetchProduct = async () => {
         let response = await readProductInfoWithId(id);
 
-        //console.log(">>> check response", response);
+        console.log(">>> check response", response);
         if (response && response.DT.EC === 0) {
             let product = response.DT.DT;
 
+            console.log("this is main image 1", product.image);
             product.image = await convertToImage(product.image);
+            console.log("this is main image 2", product.image);
             setThumbnails(thumbnails => [...thumbnails, product.image]);
             setMainImage(product.image);
             setProductInfo(product);

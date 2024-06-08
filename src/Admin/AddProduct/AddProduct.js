@@ -1,7 +1,7 @@
 
 import '../../compoments/Productdescription/Productdescription.scss';
 import './AddProduct.scss';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCommentSms } from '@fortawesome/free-solid-svg-icons';
@@ -36,12 +36,13 @@ function PreWithLimit({ text = '', limit }) {
 
 function Addproduct() {
     const [isShowModalDelete, setIsShowModalDelete] = useState(false);
-    const [mainImage, setMainImage] = useState(add);
+    const [mainImage, setMainImage] = useState('');
     const [startIdx, setStartIdx] = useState(0);
     const [isExpanded, setIsExpanded] = useState(false);
     const [linesToShow, setLinesToShow] = useState(9);
     const [isEditing, setIsEditing] = useState(false);
     const [product, setProduct] = useState({});
+    const [thumbnails, setThumbnails] = useState([]);
 
     const handleDeleteUser = async () => {
         setIsShowModalDelete(true);
@@ -56,7 +57,7 @@ function Addproduct() {
 
     const handleSave = () => {
         setIsEditing(false);
-        // Lưu thông tin đã chỉnh sửa ở đây
+
     };
 
     const toggleExpand = () => {
@@ -95,10 +96,43 @@ function Addproduct() {
         setProduct(_product);
     }
 
-    const thumbnails = [
+    // useEffect(() => {
+    //     console.log("product", product);
+    // }, [product]);
 
+    async function getBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader()
+            reader.readAsDataURL(file)
+            reader.onload = () => {
+                resolve(reader.result)
+            }
+            reader.onerror = reject
+        })
+    }
 
-    ];
+    const handleUploadImage = async (event) => {
+        let data = event.target.files;
+        let file = data[0];
+
+        if (file) {
+            let base64 = await getBase64(file);
+            //console.log(">>> base64 image", base64);
+
+            setThumbnails(thumbnails => [...thumbnails, base64]);
+            const _product = _.cloneDeep(product);
+            _product['image'].push(base64);
+
+            setProduct(_product);
+
+            if (mainImage === '') setMainImage(base64);
+        }
+
+    };
+
+    useEffect(() => {
+        console.log("thumbnails", thumbnails);
+    }, [thumbnails]);
 
     const renderThumbnails = () => {
         return thumbnails.slice(startIdx, startIdx + 5).map((thumbnail, index) => (
@@ -108,10 +142,10 @@ function Addproduct() {
                         <picture>
                             <img
                                 className="IMAW1w"
-                                src={thumbnail.url}
-                                alt={thumbnail.alt}
-                                onMouseEnter={() => setMainImage(thumbnail.url)}
-                                onMouseLeave={() => setMainImage(thumbnail.url)}
+                                src={thumbnail}
+                                alt={`Product ${index}`}
+                                onMouseEnter={() => setMainImage(thumbnail)}
+                                onMouseLeave={() => setMainImage(thumbnail)}
                             />
                         </picture>
                     </div>
@@ -127,8 +161,8 @@ function Addproduct() {
                 <div className="container rounded">
                     <section className="Allpicture">
                         <div className="flex flex-column">
-                            <div className="shopee-image-container" onclick="uploadImage()">
-                                <button id="uploadButton" onclick="uploadImage()">
+                            <div className="shopee-image-container">
+                                <button id="uploadButton">
                                     <picture>
                                         <img className="IMAW1w" src={mainImage} alt="Main Image"></img>
                                     </picture>
@@ -145,7 +179,8 @@ function Addproduct() {
 
 
                             </div>
-                            <button className="upload-btn">Upload Image</button>
+                            Upload Image
+                            <input type="file" className="upload-btn" onChange={(event) => handleUploadImage(event)}></input>
                         </div>
 
                     </section>
@@ -206,17 +241,14 @@ function Addproduct() {
                                 ) : (
                                     <button type="button" className="btn btn-solid-primary btn--l YuENex edit" aria-disabled="false" onClick={handleEdit}>Chỉnh sửa</button>
                                 )}
-                                <button type="button" className="btn btn-solid-primary btn--l YuENex delete" aria-disabled="false"
-                                    onClick={() => handleDeleteUser()}
-                                >Xóa sản phẩm</button>
 
                             </div>
                         </div>
                     </section>
 
-                </div>
+                </div >
 
-            </div>
+            </div >
             <ModalDelete
                 show={isShowModalDelete}
                 handleClose={handleClose}
