@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCommentSms } from '@fortawesome/free-solid-svg-icons';
-
+import ImageZoom from './ImageZoom';
 function PreWithLimit({ text, limit }) {
     const [expanded, setExpanded] = useState(false);
     const lines = text.split('\n');
@@ -119,8 +119,8 @@ function Productdescription() {
                 <section class="Allpicture">
                     <div class="flex flex-column">
                         <div class="shopee-image-container">
-                            <picture>
-                                <img class="IMAW1w" src={mainImage} alt="Main Image"></img>
+                            <picture className='IMAW1w'>
+                            <ImageZoom src={mainImage} zoomFactor={2} zoomAreaSize={125} /> {/* Sử dụng component ImageZoom */}
                             </picture>
                         </div>
                         <div class="airUhU" >
