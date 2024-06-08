@@ -14,6 +14,7 @@ import Allproduct from '../compoments/Allproduct/Allproduct';
 import Productdescription from '../compoments/Productdescription/Productdescription';
 import Addproduct from '../Admin/AddProduct/AddProduct';
 import Adminpage from '../Admin/Adminpage/Adminpage'
+import Editproduct from '../Admin/Editproduct/Editproduct'
 
 const AppRoutes = (props) => {
 
@@ -22,6 +23,7 @@ const AppRoutes = (props) => {
             <PrivateRoutes path="/test" component={Test} />
             <PrivateRoutes path="/admin-page" component={Adminpage} />
             <PrivateRoutes path='/AddProduct' component={Addproduct} />
+            <PrivateRoutes path='/edit-product' component={Editproduct} />
             <Route path="/product" exact>
                 <Productdescription />
             </Route>

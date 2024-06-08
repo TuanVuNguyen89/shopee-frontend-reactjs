@@ -7,6 +7,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import Slider from './compoments/Slider/Slider'
+import Editproduct from './Admin/Editproduct/Editproduct';
 import {
   BrowserRouter as Router,
   Switch,
@@ -23,7 +24,6 @@ function App() {
 
   return (
     <Router>
-
       {user && user.isLoading ? <div> loading... </div> :
         <>
           <div className="shop-header">

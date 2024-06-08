@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 import { faCommentSms } from '@fortawesome/free-solid-svg-icons';
 import { readProductInfoWithId, readImageInfoWithId } from '../../services/productService';
 import { Buffer } from 'buffer';
-
+import ImageZoom from './ImageZoom';
 function PreWithLimit({ text, limit }) {
     const [expanded, setExpanded] = useState(false);
     const lines = text.split('\r\n');
@@ -145,13 +145,13 @@ const Productdescription = (props) => {
     };
 
     return (
-        <div className="allBackground2">
-            <div className="container rounded">
-                <section className="Allpicture">
-                    <div className="flex flex-column">
-                        <div className="shopee-image-container">
-                            <picture>
-                                <img className="IMAW1w" src={mainImage} alt="Main Image"></img>
+        <div class="allBackground2">
+            <div class="container rounded">
+                <section class="Allpicture">
+                    <div class="flex flex-column">
+                        <div class="shopee-image-container">
+                            <picture className='IMAW1w'>
+                                <ImageZoom src={mainImage} zoomFactor={2} zoomAreaSize={125} /> {/* Sử dụng component ImageZoom */}
                             </picture>
                         </div>
                         <div className="airUhU" >
@@ -176,7 +176,6 @@ const Productdescription = (props) => {
                             <div className="flex flex-column CWiSMQ">
                                 <section className="flex items-center" aria-live="polite">
                                     <div className="flex items-center QAc7_y">
-                                        <div className="qg2n76">₫{productInfo.price}</div>
                                         <div className="flex items-center">
                                             <div className="G27FPf"> {productInfo.price}VN₫
                                             </div>

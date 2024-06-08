@@ -1,21 +1,21 @@
 
 import '../../compoments/Productdescription/Productdescription.scss';
-import './AddProduct.scss';
 import React, { useState, useEffect } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCommentSms } from '@fortawesome/free-solid-svg-icons';
-import add from '../../compoments/img/instagram-3814061_1280.webp'
+import { useLocation } from 'react-router-dom';
 import ModalDelete from '../ModalDelete';
-import { createProduct } from '../../services/productService'
-import _ from 'lodash'
+import { Buffer } from 'buffer';
+import { readProductInfoWithId, readImageInfoWithId } from '../../services/productService';
+import _ from 'lodash';
 function PreWithLimit({ text = '', limit }) {
     function showUploadButton() {
         var uploadButton = document.getElementById("uploadButton");
         uploadButton.style.display = "block"; // Hiển thị nút tải ảnh lên khi click vào ảnh
     }
     const [expanded, setExpanded] = useState(false);
-    const lines = text.split('\r\n');
+    const lines = (text || '').split('\r\n'); // Provide a default empty string
 
     const handleClick = () => {
         setExpanded(!expanded);
@@ -34,16 +34,17 @@ function PreWithLimit({ text = '', limit }) {
         </pre>
     );
 }
+function Editproduct() {
+    const location = useLocation();
+    const { id } = location.state || {};
 
-function Addproduct() {
     const [isShowModalDelete, setIsShowModalDelete] = useState(false);
     const [mainImage, setMainImage] = useState('');
-    const [renderImage, setRenderImage] = useState('');
     const [startIdx, setStartIdx] = useState(0);
     const [isExpanded, setIsExpanded] = useState(false);
     const [linesToShow, setLinesToShow] = useState(9);
     const [isEditing, setIsEditing] = useState(false);
-    const [product, setProduct] = useState({ image: [] });
+    const [product, setProduct] = useState({});
     const [thumbnails, setThumbnails] = useState([]);
 
     const handleDeleteThumbnail = (index) => {
@@ -51,7 +52,6 @@ function Addproduct() {
         updatedThumbnails.splice(index, 1);
         setThumbnails(updatedThumbnails);
     };
-
 
     const handleDeleteUser = async () => {
         setIsShowModalDelete(true);
@@ -64,20 +64,11 @@ function Addproduct() {
         setIsEditing(true);
     };
 
-    const handleSave = async () => {
+    const handleSave = () => {
         setIsEditing(false);
 
-        let _product = _.cloneDeep(product);
-        _product = { ..._product, mainImage };
-        setProduct(_product);
-
-        const res = await createProduct(_product, mainImage);
-        console.log(res);
-
-        if (res && res.EC !== 0) {
-            alert(res.EM);
-        }
     };
+
 
     const toggleExpand = () => {
         setIsExpanded(!isExpanded);
@@ -100,6 +91,7 @@ function Addproduct() {
         }
     };
 
+
     const handlePrevious = () => {
         if (startIdx > 0) {
             setStartIdx((prevIdx) => prevIdx - 1);
@@ -107,7 +99,6 @@ function Addproduct() {
             setStartIdx(thumbnails.length - 1);
         }
     };
-
     const handleProduct = (type, value) => {
         const _product = _.cloneDeep(product);
         _product[type] = value;
@@ -139,25 +130,70 @@ function Addproduct() {
             //console.log(">>> base64 image", base64);
 
             setThumbnails(thumbnails => [...thumbnails, base64]);
-            const _product = _.cloneDeep(product);
-            _product['image'].push(base64);
-
-            setProduct(_product);
-
-            if (mainImage === '') {
-                setMainImage(base64);
-                setRenderImage(base64);
-            }
+            if (mainImage === '') setMainImage(base64);
         }
 
     };
 
+    const convertToImage = async (image) => {
+        let imageBase64 = '';
+        if (image) {
+            imageBase64 = new Buffer(image, 'base64').toString('binary');
+        }
+
+        return imageBase64;
+    }
+
+    useEffect(() => {
+        fetchProduct();
+        fetchImages();
+
+        //console.log(">>> check thumbnails", thumbnails);
+    }, []);
+
+    const fetchImages = async () => {
+        let response = await readImageInfoWithId(id);
+
+        //console.log(">>> check response", response);
+        if (response && response.DT.EC === 0) {
+            const images = response.DT.DT;
+
+            const updatedImages = await Promise.all(images.map(async (item) => {
+                item.image = await convertToImage(item.image);
+                return item;
+            }));
+
+            updatedImages.map((image, index) => {
+                setThumbnails(thumbnails => [...thumbnails, image.image]);
+            })
+        }
+    }
+
+    const fetchProduct = async () => {
+        let response = await readProductInfoWithId(id);
+
+        //console.log(">>> check response", response);
+        if (response && response.DT.EC === 0) {
+            let product = response.DT.DT;
+
+            //console.log("this is main image 1", product.image);
+            product.image = await convertToImage(product.image);
+            //console.log("this is main image 2", product.image);
+            setMainImage(product.image);
+            setProduct(product);
+            // setListProduct(updatedProducts);
+        }
+    };
+
     useEffect(() => {
         console.log("thumbnails", thumbnails);
+        console.log("id: ", id);
     }, [thumbnails]);
 
+
+
     const renderThumbnails = () => {
-        return thumbnails.slice(startIdx, startIdx + 5).map((thumbnail, index) => (
+        return [...thumbnails].slice(startIdx, startIdx + 5).map((thumbnail, index) => (
             <div key={index} className="UBG7wZ">
                 <div className="jA1mTx">
                     <div className="SarUkj shopee-image-container">
@@ -166,12 +202,14 @@ function Addproduct() {
                                 className="IMAW1w"
                                 src={thumbnail}
                                 alt={`Product ${index}`}
-                                onMouseEnter={() => setRenderImage(thumbnail)}
-                                onMouseLeave={() => setRenderImage(thumbnail)}
+                                onMouseEnter={() => setMainImage(thumbnail)}
+                                onMouseLeave={() => setMainImage(thumbnail)}
                             />
                         </picture>
+
                     </div>
                     <button onClick={() => handleDeleteThumbnail(index)}>Xóa</button>
+
                     <div className="wOzCmT thumbnail-selected-mask"></div>
                 </div>
             </div>
@@ -180,18 +218,16 @@ function Addproduct() {
 
     return (
         <>
-            <div className="allBackground2">
-                <div className="container rounded">
-                    <section className="Allpicture">
-                        <div className="flex flex-column">
-                            <div className="shopee-image-container">
-                                <button id="uploadButton">
-                                    <picture>
-                                        <img className="IMAW1w" src={renderImage} alt="Main Image"></img>
-                                    </picture>
-                                </button>
+            <div class="allBackground2">
+                <div class="container rounded">
+                    <section class="Allpicture">
+                        <div class="flex flex-column">
+                            <div class="shopee-image-container">
+                                <picture>
+                                    <img class="IMAW1w" src={mainImage} alt="Main Image"></img>
+                                </picture>
                             </div>
-                            <div className="airUhU" >
+                            <div class="airUhU" >
                                 {renderThumbnails()}
                                 <button className="shopee-icon-button nVAzDy CAvqYR" tabIndex="-1" onClick={handlePrevious}>
                                     <img alt="icon arrow left bold" src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/productdetailspage/be6abcdf029c79bbafd9.svg" />
@@ -200,18 +236,17 @@ function Addproduct() {
                                     <img alt="icon arrow right bold" src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/productdetailspage/8120e456c268426c4054.svg" />
                                 </button>
 
-
                             </div>
+
                             Upload Image
-                            <input type="file" className="upload-btn" onChange={(event) => handleUploadImage(event)}></input>
+                            <input type="file" className="upload-btn" onChange={(event) => handleUploadImage(event)}>
+                            </input>
                         </div>
-
                     </section>
-
                     <section className="flex flex-auto i9t0tr">
                         <div className="flex-auto flex-column  DXQgih">
                             <div className="WBVL_7">
-                                <img alt="shopee choice badge" className="uq_xEP" src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/productdetailspage/a60ce3c82eeb30458e75.svg"></img>
+                                <img alt="shopee choice badge" class="uq_xEP" src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/productdetailspage/a60ce3c82eeb30458e75.svg"></img>
                                 {isEditing ? (
                                     <input type="text" value={product.name} onChange={(e) => handleProduct('name', e.target.value)} />
                                 ) : (
@@ -247,34 +282,35 @@ function Addproduct() {
                                             <button id='view-more-btn' onClick={handleViewMore}>...Xem thêm</button>
                                         )}
                                     </div>
+
                                 </div>
                             </div>
                             <div className="bwPwYa high-end-button-group">
                                 <a href='https://www.facebook.com/' target="_blank" rel="noopener noreferrer">
-                                    <button type="button" className="btn btn-solid-primary btn--l YuENex" aria-disabled="false" ><FontAwesomeIcon icon={faCommentSms} />Liên hệ Ngay</button>
+                                    <button type="button" class="btn btn-solid-primary btn--l YuENex" aria-disabled="false" ><FontAwesomeIcon icon={faCommentSms} />Liên hệ Ngay</button>
                                 </a>
-
                                 {isEditing ? (
-                                    <button type="button" className="btn btn-solid-primary btn--l YuENex edit" aria-disabled="false" onClick={handleSave}>Lưu chỉnh sửa</button>
+                                    <button type="button" class="btn btn-solid-primary btn--l YuENex edit" aria-disabled="false" onClick={handleSave}>Lưu chỉnh sửa</button>
                                 ) : (
-                                    <button type="button" className="btn btn-solid-primary btn--l YuENex edit" aria-disabled="false" onClick={handleEdit}>Chỉnh sửa</button>
+                                    <button type="button" class="btn btn-solid-primary btn--l YuENex edit" aria-disabled="false" onClick={handleEdit}>Chỉnh sửa</button>
                                 )}
-
+                                <button type="button" class="btn btn-solid-primary btn--l YuENex delete" aria-disabled="false"
+                                    onClick={() => handleDeleteUser()}
+                                >Xóa sản phẩm</button>
                             </div>
                         </div>
                     </section>
 
-                </div >
+                </div>
 
-            </div >
+            </div>
             <ModalDelete
                 show={isShowModalDelete}
                 handleClose={handleClose}
             />
         </>
 
-
     );
 }
 
-export default Addproduct;
+export default Editproduct;

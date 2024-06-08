@@ -90,7 +90,7 @@ const Allproduct = (props) => {
                                     <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
                                         <button className="contents" onClick={() => getProduct(product.id)}>
                                             <div className="flex flex-col bg-white cursor-pointer h-full">
-                                                <div className="flex flex-col bg-white cursor-pointer h-full">
+                                                <div className="relative z-0 w-full pt-full">
                                                     <img src={product.image} alt={`${product.name}`} className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                                 </div>
                                                 <div className="p-2 flex-1 flex flex-col justify-between">
@@ -133,7 +133,7 @@ const Allproduct = (props) => {
                                     <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
                                         <button className="contents" onClick={() => getProduct(product.id)}>
                                             <div className="flex flex-col bg-white cursor-pointer h-full">
-                                                <div className="flex flex-col bg-white cursor-pointer h-full">
+                                                <div className="relative z-0 w-full pt-full">
                                                     <img src={product.image} alt={`${product.name}`} className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                                 </div>
                                                 <div className="p-2 flex-1 flex flex-col justify-between">
