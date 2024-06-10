@@ -2,6 +2,7 @@
 import '../../compoments/Productdescription/Productdescription.scss';
 import './AddProduct.scss';
 import React, { useState, useEffect } from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCommentSms } from '@fortawesome/free-solid-svg-icons';
@@ -36,9 +37,10 @@ function PreWithLimit({ text = '', limit }) {
 }
 
 function Addproduct() {
+    const history = useHistory();
+
     const [isShowModalDelete, setIsShowModalDelete] = useState(false);
-    const [mainImage, setMainImage] = useState('');
-    const [renderImage, setRenderImage] = useState('');
+    const [defaultImage, setDefaultImage] = useState('');
     const [startIdx, setStartIdx] = useState(0);
     const [isExpanded, setIsExpanded] = useState(false);
     const [linesToShow, setLinesToShow] = useState(9);
@@ -68,14 +70,18 @@ function Addproduct() {
         setIsEditing(false);
 
         let _product = _.cloneDeep(product);
-        _product = { ..._product, mainImage };
+        _product = { ..._product, mainImage: defaultImage };
+        _product = { ..._product, image: thumbnails };
         setProduct(_product);
 
-        const res = await createProduct(_product, mainImage);
-        console.log(res);
+        const res = await createProduct(_product);
+        //console.log(res);
 
         if (res && res.EC !== 0) {
             alert(res.EM);
+        }
+        else {
+            history.push('/admin-page');
         }
     };
 
@@ -119,6 +125,13 @@ function Addproduct() {
     //     console.log("product", product);
     // }, [product]);
 
+    useEffect(() => {
+        console.log("thumbnails", thumbnails);
+        if (thumbnails.length > 0) {
+            setDefaultImage(thumbnails[0]);
+        }
+    }, [thumbnails]);
+
     async function getBase64(file) {
         return new Promise((resolve, reject) => {
             const reader = new FileReader()
@@ -140,21 +153,12 @@ function Addproduct() {
 
             setThumbnails(thumbnails => [...thumbnails, base64]);
             const _product = _.cloneDeep(product);
-            _product['image'].push(base64);
+            _product.image.push(base64);
 
             setProduct(_product);
-
-            if (mainImage === '') {
-                setMainImage(base64);
-                setRenderImage(base64);
-            }
         }
 
     };
-
-    useEffect(() => {
-        console.log("thumbnails", thumbnails);
-    }, [thumbnails]);
 
     const renderThumbnails = () => {
         return thumbnails.slice(startIdx, startIdx + 5).map((thumbnail, index) => (
@@ -166,8 +170,8 @@ function Addproduct() {
                                 className="IMAW1w"
                                 src={thumbnail}
                                 alt={`Product ${index}`}
-                                onMouseEnter={() => setRenderImage(thumbnail)}
-                                onMouseLeave={() => setRenderImage(thumbnail)}
+                                onMouseEnter={() => setDefaultImage(thumbnail)}
+                                onMouseLeave={() => setDefaultImage(thumbnail)}
                             />
                         </picture>
                     </div>
@@ -187,7 +191,7 @@ function Addproduct() {
                             <div className="shopee-image-container">
                                 <button id="uploadButton">
                                     <picture>
-                                        <img className="IMAW1w" src={renderImage} alt="Main Image"></img>
+                                        <img className="IMAW1w" src={defaultImage} alt="Main Image"></img>
                                     </picture>
                                 </button>
                             </div>

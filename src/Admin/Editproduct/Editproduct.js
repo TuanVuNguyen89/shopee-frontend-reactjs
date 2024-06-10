@@ -4,10 +4,10 @@ import React, { useState, useEffect } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCommentSms } from '@fortawesome/free-solid-svg-icons';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import ModalDelete from '../ModalDelete';
 import { Buffer } from 'buffer';
-import { readProductInfoWithId, readImageInfoWithId } from '../../services/productService';
+import { readProductInfoWithId, readImageInfoWithId, editProduct, deleteProduct } from '../../services/productService';
 import _ from 'lodash';
 function PreWithLimit({ text = '', limit }) {
     function showUploadButton() {
@@ -35,12 +35,13 @@ function PreWithLimit({ text = '', limit }) {
     );
 }
 function Editproduct() {
+    const history = useHistory();
     const location = useLocation();
     const { id } = location.state || {};
 
     const [isShowModalDelete, setIsShowModalDelete] = useState(false);
-    const [mainImage, setMainImage] = useState('');
     const [startIdx, setStartIdx] = useState(0);
+    const [defaultImage, setDefaultImage] = useState('');
     const [isExpanded, setIsExpanded] = useState(false);
     const [linesToShow, setLinesToShow] = useState(9);
     const [isEditing, setIsEditing] = useState(false);
@@ -56,6 +57,18 @@ function Editproduct() {
     const handleDeleteUser = async () => {
         setIsShowModalDelete(true);
     }
+
+    const confirmDeleteProduct = async () => {
+        let res = await deleteProduct(id);
+
+        if (res && res.EC === 0) {
+            history.push('/admin-page');
+        }
+        else {
+            alert(res.EM);
+        }
+    }
+
     const handleClose = () => {
         setIsShowModalDelete(false);
 
@@ -64,9 +77,26 @@ function Editproduct() {
         setIsEditing(true);
     };
 
-    const handleSave = () => {
+    const handleSave = async () => {
         setIsEditing(false);
 
+        let _product = _.cloneDeep(product);
+
+        if (thumbnails.length > 0) {
+            _product = { ..._product, mainImage: thumbnails[0] };
+            _product = { ..._product, image: thumbnails };
+        }
+
+        setProduct(_product);
+        const res = await editProduct(_product);
+        console.log(res);
+
+        if (res && res.EC !== 0) {
+            alert(res.EM);
+        }
+        else {
+            history.push('/admin-page');
+        }
     };
 
 
@@ -130,7 +160,7 @@ function Editproduct() {
             //console.log(">>> base64 image", base64);
 
             setThumbnails(thumbnails => [...thumbnails, base64]);
-            if (mainImage === '') setMainImage(base64);
+            if (defaultImage === '' && thumbnails.length > 0) setDefaultImage(thumbnails[0]);
         }
 
     };
@@ -158,14 +188,16 @@ function Editproduct() {
         if (response && response.DT.EC === 0) {
             const images = response.DT.DT;
 
-            const updatedImages = await Promise.all(images.map(async (item) => {
-                item.image = await convertToImage(item.image);
-                return item;
-            }));
+            if (images) {
+                const updatedImages = await Promise.all(images.map(async (item) => {
+                    item.image = await convertToImage(item.image);
+                    return item;
+                }));
 
-            updatedImages.map((image, index) => {
-                setThumbnails(thumbnails => [...thumbnails, image.image]);
-            })
+                updatedImages.map((image, index) => {
+                    setThumbnails(thumbnails => [...thumbnails, image.image]);
+                })
+            }
         }
     }
 
@@ -176,21 +208,18 @@ function Editproduct() {
         if (response && response.DT.EC === 0) {
             let product = response.DT.DT;
 
-            //console.log("this is main image 1", product.image);
-            product.image = await convertToImage(product.image);
-            //console.log("this is main image 2", product.image);
-            setMainImage(product.image);
+            //console.log("this is product from server", product);
+            if (product.image) {
+                product.image = await convertToImage(product.image);
+                setDefaultImage(product.image);
+                delete product.image;
+            }
+
             setProduct(product);
+
             // setListProduct(updatedProducts);
         }
     };
-
-    useEffect(() => {
-        console.log("thumbnails", thumbnails);
-        console.log("id: ", id);
-    }, [thumbnails]);
-
-
 
     const renderThumbnails = () => {
         return [...thumbnails].slice(startIdx, startIdx + 5).map((thumbnail, index) => (
@@ -202,8 +231,8 @@ function Editproduct() {
                                 className="IMAW1w"
                                 src={thumbnail}
                                 alt={`Product ${index}`}
-                                onMouseEnter={() => setMainImage(thumbnail)}
-                                onMouseLeave={() => setMainImage(thumbnail)}
+                                onMouseEnter={() => setDefaultImage(thumbnail)}
+                                onMouseLeave={() => setDefaultImage(thumbnail)}
                             />
                         </picture>
 
@@ -224,7 +253,7 @@ function Editproduct() {
                         <div class="flex flex-column">
                             <div class="shopee-image-container">
                                 <picture>
-                                    <img class="IMAW1w" src={mainImage} alt="Main Image"></img>
+                                    <img class="IMAW1w" src={defaultImage} alt="Main Image"></img>
                                 </picture>
                             </div>
                             <div class="airUhU" >
@@ -307,6 +336,7 @@ function Editproduct() {
             <ModalDelete
                 show={isShowModalDelete}
                 handleClose={handleClose}
+                confirmDeleteProduct={confirmDeleteProduct}
             />
         </>
 

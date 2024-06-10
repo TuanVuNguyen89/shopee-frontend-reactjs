@@ -19,14 +19,25 @@ const readImageInfoWithId = (id) => {
     return axios.post('/api/v1/product/image/read', { id });
 }
 
-const createProduct = (data, mainImage) => {
+const createProduct = (data) => {
     let _data = _.cloneDeep(data);
 
     // Add mainImage to _product
-    _data = { ..._data, mainImage };
     _data = { ..._data, categoryId: 1 }
-    console.log("this is product", _data);
+    //console.log("this is product", _data);
     return axios.post('/api/v1/product/create', { _data });
 }
 
-export { readProductInfo, readProductInfoWithType, readProductInfoWithId, readImageInfoWithId, createProduct };
+const editProduct = (data) => {
+    return axios.put('/api/v1/product/edit', { data });
+}
+
+const deleteProduct = (id) => {
+    //console.log(id);
+    return axios.delete(`/api/v1/product/delete/${id}`);
+}
+
+export {
+    readProductInfo, readProductInfoWithType, readProductInfoWithId,
+    readImageInfoWithId, createProduct, editProduct, deleteProduct
+};
