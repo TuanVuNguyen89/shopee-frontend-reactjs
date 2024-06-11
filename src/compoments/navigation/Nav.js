@@ -15,7 +15,8 @@ const Nav = (props) => {
 
     if (user && user.isAuthenticated) {
         return (
-            <div className="topnav">
+            <div className='navbar-with-more-menu__items'>
+                                <div className="topnav">
                 <NavLink className="folder" to="/admin-page" exact>Tất cả sản phẩm</NavLink>
                 <NavLink className="folder" to="/product1">Áo nam</NavLink>
                 <NavLink className="folder" to="/product2">Quần short nam</NavLink>
@@ -23,17 +24,21 @@ const Nav = (props) => {
                 <NavLink className="folder" to="/product4">Quần áo nữ</NavLink>
                 <NavLink className="folder" to="/more">Xem thêm <FontAwesomeIcon icon={faCaretDown} /></NavLink>
             </div>
+            </div>
+
         );
     }
     else {
         return (
-            <div className="topnav">
+            <div className='navbar-with-more-menu__items'>
+                                <div className="topnav">
                 <NavLink className="folder" to="/" exact>Tất cả sản phẩm</NavLink>
                 <NavLink className="folder" to="/product1">Áo nam</NavLink>
-                <NavLink className="folder" to="/product2">Sản phẩm 2</NavLink>
-                <NavLink className="folder" to="/product3">Sản phẩm 3</NavLink>
-                <NavLink className="folder" to="/product4">Sản phẩm 4</NavLink>
-                <NavLink className="folder" to="/more">Xem thêm <FontAwesomeIcon icon={faCaretDown} /></NavLink>
+                <NavLink className="folder" to="/product2">Quần short nam</NavLink>
+                <NavLink className="folder" to="/product3">Giày dép</NavLink>
+                <NavLink className="folder" to="/product4">Quần áo nữ</NavLink>
+                <NavLink className="folder" to="/more">Xem thêm    <FontAwesomeIcon icon={faCaretDown} /></NavLink>
+            </div>
             </div>
         );
     }
