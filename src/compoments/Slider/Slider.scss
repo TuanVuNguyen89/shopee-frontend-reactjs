@@ -47,6 +47,7 @@ body {
         color: black;
     }
     .Description{
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         margin-left: auto;
         display: flex;
         background-color: rgb(255, 255, 255);
@@ -54,12 +55,13 @@ body {
         width: fit-content;
     }
     pre {
-        font-family: var(--bs-body-font-family);
+        font-family:var(--bs-body-font-family);
         display: block;
         margin-top: 0;
         margin-bottom: 1rem;
         overflow: auto;
-        font-size: .875em;
+        font-weight: 600;
+        font-size: .9rem;
     }
     h5{
         text-align: center;

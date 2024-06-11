@@ -9,11 +9,6 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import { faArrowRight, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Sliderproduct from '../Allproduct/Sliderproduct/Sliderproduct';
-import product from '../img/ao (1).jpg'
-import product2 from '../img/cn-11134207-7r98o-lq1z2hqjp1qw5b.jpg'
-import product3 from '../img/ao3.jpg'
-import product4 from '../img/sg-11134201-7qvdo-lf2oc2bistpl1f.jpg'
-import product5 from '../img/ao4.jpg'
 import banner1 from '../img/vn-50009109-9f55e03457f53c21641e034794aa44a0_xxhdpi.jpg'
 import banner2 from '../img/vn-50009109-eabbfa2e8ba38fa0d3ba2471c794a392_xxhdpi.jpg'
 import banner3 from '../img/vn-50009109-7ff80d285f5ba47e46094b56c68d5f6a_xxhdpi.jpg'
@@ -84,7 +79,7 @@ const Allproduct = (props) => {
                                     <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
                                         <button className="contents" onClick={() => getProduct(product.id)}>
                                             <div className="flex flex-col bg-white cursor-pointer h-full">
-                                                <div className="flex flex-col bg-white cursor-pointer h-full">
+                                            <div className="relative z-0 w-full pt-full">
                                                     <img src={product.image} alt={`${product.name}`} className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                                 </div>
                                                 <div className="p-2 flex-1 flex flex-col justify-between">
@@ -125,7 +120,7 @@ const Allproduct = (props) => {
                                     <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
                                         <button className="contents" onClick={() => getProduct(product.id)}>
                                             <div className="flex flex-col bg-white cursor-pointer h-full">
-                                                <div className="flex flex-col bg-white cursor-pointer h-full">
+                                            <div className="relative z-0 w-full pt-full">
                                                     <img src={product.image} alt={`${product.name}`} className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                                 </div>
                                                 <div className="p-2 flex-1 flex flex-col justify-between">

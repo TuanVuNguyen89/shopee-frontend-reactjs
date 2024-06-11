@@ -136,9 +136,12 @@ function Editproduct() {
         setProduct(_product);
     }
 
-    // useEffect(() => {
-    //     console.log("product", product);
-    // }, [product]);
+    useEffect(() => {
+        console.log("thumbnails", thumbnails);
+        if (thumbnails.length > 0) {
+            setDefaultImage(thumbnails[0]);
+        }
+    }, [thumbnails]);
 
     async function getBase64(file) {
         return new Promise((resolve, reject) => {
