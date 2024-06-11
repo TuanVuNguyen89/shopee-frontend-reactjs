@@ -29,6 +29,7 @@ const createProduct = (data) => {
 }
 
 const editProduct = (data) => {
+    //console.log("price: ", data.price);
     return axios.put('/api/v1/product/edit', { data });
 }
 

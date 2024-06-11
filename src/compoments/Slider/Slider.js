@@ -27,7 +27,9 @@ const Slider = (props) => {
         if (response && response.EC === 0) {
             let imageBase64Logo = '', imageBase64Background = '';
             if (response.DT[0].logo) {
+                //console.log("before converting: ", response.DT[0].logo);
                 imageBase64Logo = new Buffer(response.DT[0].logo, 'base64').toString('binary');
+                //console.log("after converting: ", imageBase64Logo);
             }
 
             if (response.DT[0].background) {

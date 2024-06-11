@@ -88,6 +88,8 @@ function Editproduct() {
         }
 
         setProduct(_product);
+        //console.log(_product['price']);
+        //return;
         const res = await editProduct(_product);
         console.log(res);
 
@@ -136,9 +138,12 @@ function Editproduct() {
         setProduct(_product);
     }
 
-    // useEffect(() => {
-    //     console.log("product", product);
-    // }, [product]);
+    useEffect(() => {
+        console.log("thumbnails", thumbnails);
+        if (thumbnails.length > 0) {
+            setDefaultImage(thumbnails[0]);
+        }
+    }, [thumbnails]);
 
     async function getBase64(file) {
         return new Promise((resolve, reject) => {

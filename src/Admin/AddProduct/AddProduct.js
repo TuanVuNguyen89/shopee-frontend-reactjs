@@ -70,7 +70,7 @@ function Addproduct() {
         setIsEditing(false);
 
         let _product = _.cloneDeep(product);
-        _product = { ..._product, mainImage: defaultImage };
+        _product = { ..._product, mainImage: thumbnails[0] };
         _product = { ..._product, image: thumbnails };
         setProduct(_product);
 

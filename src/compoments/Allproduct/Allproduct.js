@@ -26,7 +26,7 @@ const Allproduct = (props) => {
     const history = useHistory();
     const [listProduct, setListProduct] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [currentLimit, setCurrentLimit] = useState(10);
+    const [currentLimit, setCurrentLimit] = useState(20);
     const [totalPages, setTotalPages] = useState(0);
 
     useEffect(() => {
@@ -120,7 +120,7 @@ const Allproduct = (props) => {
                 }
             </div>
 
-            <div className="Sliderproduct">
+            {/* <div className="Sliderproduct">
                 <Sliderproduct arrImages={[banner1, banner2, banner3, banner4]} />
             </div>
 
@@ -161,7 +161,7 @@ const Allproduct = (props) => {
                         )
                     })
                 }
-            </div>
+            </div> */}
 
             {totalPages > 0 &&
                 <div className="user-footer">
