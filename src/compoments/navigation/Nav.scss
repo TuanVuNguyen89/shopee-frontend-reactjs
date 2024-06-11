@@ -1,31 +1,47 @@
 .topnav {
   overflow: hidden;
-  background-color: #000000;
+  background-color: #ffffff;
   display: flex;
   justify-content: space-between;
 }
 
 .topnav .folder {
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 40px;
   text-decoration: none;
-  font-size: 17px;
-  background-color: transparent;
-  background-image: linear-gradient(90deg, #f78411 0%, #f78411 50%, transparent 50%, transparent 100%);
-  background-size: 200% 100%;
-  background-position: right center;
-  transition: background-position 0.3s ease; /* Thêm hiệu ứng transition cho background-position */
+  padding: 15px 15px;
+    color: rgba(0, 0, 0, .87);
+    display: block;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 4px solid #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    overflow: hidden; /* Thêm hiệu ứng transition cho background-position */
 }
 
 .topnav .folder:hover {
-  background-position: left center; /* Di chuyển gradient từ trái sang phải khi hover */
+  border-color: #ee4d2d;
+  color: #ee4d2d;
+    transition: border-color .2s cubic-bezier(.4,0,.6,1); 
 }
 
 
 .topnav .folder.active {
-  background-color: #f78411;
-  color: white;
+  border-color: #ee4d2d; /* Thiết lập border-color mặc định cho trạng thái active */
+  color: #ee4d2d;
+  transition: border-color 0.2s cubic-bezier(.4,0,.6,1);
+}
+
+.shop-page-menu .navbar-with-more-menu__items {
+  width: 100%;
+  flex: initial;
+
+}
+.navbar-with-more-menu__items {
+  justify-content: space-around;
+  width: 100%;
 }
 @media (max-width: 1200px) {
   .topnav .folder {
