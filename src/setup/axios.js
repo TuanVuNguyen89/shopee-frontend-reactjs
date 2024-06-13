@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // Set config defaults when creating the instance
 const instance = axios.create({
-    baseURL: 'http://localhost:8080'
+    baseURL: 'https://dc26rcmp-8080.asse.devtunnels.ms/'
 });
 
 instance.defaults.withCredentials = true;
