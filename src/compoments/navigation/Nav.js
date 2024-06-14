@@ -16,7 +16,7 @@ const Nav = (props) => {
     if (user && user.isAuthenticated) {
         return (
             <div className="topnav">
-                <NavLink className="folder" to="/admin-page" exact>Tất cả sản phẩm</NavLink>
+                <NavLink className="folder" to="/admin-page">Tất cả sản phẩm</NavLink>
                 <NavLink className="folder" to="/product1">Áo nam</NavLink>
                 <NavLink className="folder" to="/product2">Sản phẩm 2</NavLink>
                 <NavLink className="folder" to="/product3">Sản phẩm 3</NavLink>
@@ -28,7 +28,7 @@ const Nav = (props) => {
     else {
         return (
             <div className="topnav">
-                <NavLink className="folder" to="/" exact>Tất cả sản phẩm</NavLink>
+                <NavLink className="folder" to="/">Tất cả sản phẩm</NavLink>
                 <NavLink className="folder" to="/product1">Áo nam</NavLink>
                 <NavLink className="folder" to="/product2">Sản phẩm 2</NavLink>
                 <NavLink className="folder" to="/product3">Sản phẩm 3</NavLink>

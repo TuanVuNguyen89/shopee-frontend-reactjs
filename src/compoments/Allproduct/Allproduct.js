@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { readProductInfo } from '../../services/productService'
 import React from 'react';
 import Productdescription from '../Productdescription/Productdescription';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import ReactPaginate from "react-paginate";
 import '../Allproduct/Allproduct.scss';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -23,7 +23,7 @@ import { Buffer } from 'buffer';
 
 
 const Allproduct = (props) => {
-    const history = useHistory();
+    const navigate = useNavigate();
     const [listProduct, setListProduct] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [currentLimit, setCurrentLimit] = useState(20);
@@ -72,7 +72,7 @@ const Allproduct = (props) => {
     };
 
     const getProduct = (id) => {
-        history.push('/product', { id });
+        navigate('/product', { id });
     };
 
     return (

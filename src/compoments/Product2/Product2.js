@@ -2,7 +2,7 @@ import React from 'react';
 import '../Allproduct/Allproduct.scss';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useEffect, useState } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import ReactPaginate from "react-paginate";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -22,9 +22,9 @@ import { readProductInfoWithType } from '../../services/productService'
 import { Buffer } from 'buffer';
 
 const Allproduct = (props) => {
-    const history = useHistory();
+    const navigate = useNavigate();
     const getProduct = (id) => {
-        history.push('/product', { id });
+        navigate('/product', { id });
     };
 
     const [listProduct, setListProduct] = useState([]);

@@ -1,7 +1,7 @@
 import React from 'react';
 import Productdescription from '../../compoments/Productdescription/Productdescription';
 import { useEffect, useState } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import ReactPaginate from "react-paginate";
 import { readProductInfo } from '../../services/productService'
 import '../../compoments/Allproduct/Allproduct.scss';
@@ -21,7 +21,7 @@ import { Buffer } from 'buffer';
 
 
 const AdminAllproduct = (props) => {
-    const history = useHistory();
+    const navigate = useNavigate();
     const [listUsers, setListUsers] = useState([]);
     const [listProduct, setListProduct] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -70,11 +70,11 @@ const AdminAllproduct = (props) => {
     };
 
     const getProduct = (id) => {
-        history.push('/product', { id });
+        navigate('/product', { id });
     };
 
     const editProduct = (id) => {
-        history.push('/edit-product', { id });
+        navigate('/edit-product', { id });
     };
 
     return (

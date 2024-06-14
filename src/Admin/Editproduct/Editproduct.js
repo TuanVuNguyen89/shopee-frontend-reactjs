@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCommentSms } from '@fortawesome/free-solid-svg-icons';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ModalDelete from '../ModalDelete';
 import { Buffer } from 'buffer';
 import { readProductInfoWithId, readImageInfoWithId, editProduct, deleteProduct } from '../../services/productService';
@@ -35,7 +35,7 @@ function PreWithLimit({ text = '', limit }) {
     );
 }
 function Editproduct() {
-    const history = useHistory();
+    const navigate = useNavigate();
     const location = useLocation();
     const { id } = location.state || {};
 
@@ -62,7 +62,7 @@ function Editproduct() {
         let res = await deleteProduct(id);
 
         if (res && res.EC === 0) {
-            history.push('/admin-page');
+            navigate('/admin-page');
         }
         else {
             alert(res.EM);
@@ -97,7 +97,7 @@ function Editproduct() {
             alert(res.EM);
         }
         else {
-            history.push('/admin-page');
+            navigate('/admin-page');
         }
     };
 

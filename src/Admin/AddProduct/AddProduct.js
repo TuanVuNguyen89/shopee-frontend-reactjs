@@ -2,7 +2,7 @@
 import '../../compoments/Productdescription/Productdescription.scss';
 import './AddProduct.scss';
 import React, { useState, useEffect } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCommentSms } from '@fortawesome/free-solid-svg-icons';
@@ -37,7 +37,7 @@ function PreWithLimit({ text = '', limit }) {
 }
 
 function Addproduct() {
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const [isShowModalDelete, setIsShowModalDelete] = useState(false);
     const [defaultImage, setDefaultImage] = useState('');
@@ -81,7 +81,7 @@ function Addproduct() {
             alert(res.EM);
         }
         else {
-            history.push('/admin-page');
+            navigate('/admin-page');
         }
     };
 

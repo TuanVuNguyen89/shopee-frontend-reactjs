@@ -1,7 +1,7 @@
 import React from 'react';
 import './Adminlogin.scss'
 import { useState, useEffect, useContext } from 'react';
-import { useHistory, Redirect } from "react-router-dom";
+import { useNavigate, Redirect } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,7 +15,7 @@ const Adminlogin = (props) => {
     const { loginContext, user } = useContext(UserContext);
     const [valueLogin, setValueLogin] = useState("");
     const [password, setPassword] = useState("");
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
         let response = await loginUser(valueLogin, password);
@@ -35,7 +35,7 @@ const Adminlogin = (props) => {
             loginContext(data);
 
             localStorage.setItem('jwt', token);
-            history.push('/admin-page');
+            navigate('/admin-page');
             //window.location.reload();
         }
 
