@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // Set config defaults when creating the instance
 const instance = axios.create({
-    baseURL: 'https://dc26rcmp-8080.asse.devtunnels.ms/'
+    baseURL: 'https://shopee-backend-dx56.onrender.com/'
 });
 
 instance.defaults.withCredentials = true;
