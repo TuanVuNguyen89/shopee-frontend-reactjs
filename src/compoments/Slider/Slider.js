@@ -54,14 +54,14 @@ const Slider = (props) => {
                 <div className="Background">
                     <div className="row container Logo-container">
                         <div className="Logo col-3">
-                            <a href={listInfo.contact} target="_blank" rel="noopener noreferrer">
+                            <a href={listInfo.page} target="_blank" rel="noopener noreferrer">
                                 <img className="Logo-img" src={listInfo.logo} alt="Description of the image" />
                             </a>
                             <div className="shopInfo">
                                 <h4 className="nameShop"><a href={listInfo.contact} target="_blank" rel="noopener noreferrer">{listInfo.name}</a></h4>
-                                <p><FontAwesomeIcon icon={faSquareInstagram} />       Instagram: {listInfo.contact} </p>
+                                <p><FontAwesomeIcon icon={faSquareInstagram} />       <a href='https://www.instagram.com/hanw.v' target="_blank" rel="noopener noreferrer">Instagram: {listInfo.contact} </a></p>
                                 <p><FontAwesomeIcon icon={faSquarePhoneFlip} />         Phone number: {listInfo.phone}</p>
-                                <p><FontAwesomeIcon icon={faFacebook} />               <a href={listInfo.contact} target="_blank" rel="noopener noreferrer">Follow Page:  {listInfo.page} </a></p>
+                                <p><FontAwesomeIcon icon={faFacebook} />               <a href='https://www.facebook.com/profile.php?id=100006159049124&mibextid=LQQJ4d' target="_blank" rel="noopener noreferrer">Follow Page:  {listInfo.page} </a></p>
                                 <p><FontAwesomeIcon icon={faHouseChimney} />            Địa Chỉ: {listInfo.address} </p>
                             </div>
                         </div>
