@@ -655,11 +655,23 @@
         .flex {
             display: block;
         }
+        .QAc7_y {
+            flex-basis: 625px;
+            flex-wrap: wrap;
+            min-height: 2.25rem;
+             width: auto;
+        }
 
     }
 
     // Media query cho thiết bị có độ rộng nhỏ hơn hoặc bằng 480px (mobile)
     @media (max-width: 700px) {
+        .QAc7_y {
+            flex-basis: 625px;
+            flex-wrap: wrap;
+            min-height: 2.25rem;
+            width: auto;
+        }
         .container {
             display: block;
             margin-top: 0px;

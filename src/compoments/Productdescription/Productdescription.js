@@ -64,35 +64,25 @@ const Productdescription = (props) => {
         if (response && response.DT.EC === 0) {
             const images = response.DT.DT;
 
-            const updatedImages = await Promise.all(images.map(async (item) => {
+            await images.map(async (item) => {
                 item.image = await convertToImage(item.image);
+                setThumbnails(thumbnails => [...thumbnails, item.image]);
                 return item;
-            }));
-
-            updatedImages.map((image, index) => {
-                setThumbnails(thumbnails => [...thumbnails, image.image]);
-            })
+            });
         }
     }
-
-    useEffect(() => {
-        console.log("thumbnails", thumbnails);
-    }, [thumbnails]);
 
     const fetchProduct = async () => {
         let response = await readProductInfoWithId(id);
 
-        console.log(">>> check response", response);
+        //console.log(">>> check response", response.DT.DT);
         if (response && response.DT.EC === 0) {
             let product = response.DT.DT;
-
-            console.log("this is main image 1", product.image);
+            //console.log("product image from server: ", product.image);
             product.image = await convertToImage(product.image);
-            console.log("this is main image 2", product.image);
-            setThumbnails(thumbnails => [...thumbnails, product.image]);
-            setMainImage(product.image);
+            //console.log("this is main image 2", product.image);
+           //console.log("product image after changing: ", product.image);
             setProductInfo(product);
-            // setListProduct(updatedProducts);
         }
     };
 
@@ -122,6 +112,10 @@ const Productdescription = (props) => {
             setStartIdx(thumbnails.length - 1);
         }
     };
+    useEffect(() => {
+        if (thumbnails.length > 0) setMainImage(thumbnails[0]);
+    }, [thumbnails]);
+
 
     const renderThumbnails = () => {
         return thumbnails.slice(startIdx, startIdx + 5).map((thumbnail, index) => (

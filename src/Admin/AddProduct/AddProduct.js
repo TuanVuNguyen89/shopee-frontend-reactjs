@@ -47,7 +47,22 @@ function Addproduct() {
     const [isEditing, setIsEditing] = useState(false);
     const [product, setProduct] = useState({ image: [] });
     const [thumbnails, setThumbnails] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState(product.category || '');
 
+    // Danh sách các danh mục với id và name
+    const categories = [
+        { id: 1, name: 'Áo nam' },
+        { id: 2, name: 'Quần short nam' },
+        { id: 3, name: 'Giày dép' },
+        { id: 4, name: 'Quần áo nữ' },
+        { id: 5, name: 'Khác' }
+    ];
+
+    const handleCategoryChange = (event) => {
+        const selectedId = event.target.value;
+        setSelectedCategory(selectedId);
+        handleProduct('category', selectedId); // Cập nhật trạng thái sản phẩm với category id
+    };
     const handleDeleteThumbnail = (index) => {
         const updatedThumbnails = [...thumbnails];
         updatedThumbnails.splice(index, 1);
@@ -237,6 +252,27 @@ function Addproduct() {
                                         </div>
                                     </section>
                                 </div>
+                                <section className="flex items-center" aria-live="polite">
+                                        <div className="flex items-center QAc7_y">
+                                            <div className="flex items-center">
+                                            Danh mục sản phẩm:
+                                        {isEditing ? (
+                                            <select value={selectedCategory} onChange={handleCategoryChange}>
+                                                <option value={0}>--Chọn danh mục--</option>
+                                                {categories.map((category) => (
+                                                    <option key={category.id} value={category.id}>
+                                                        {category.name}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        ) : (
+                                            <span>{categories.find(cat => cat.id === product.category)?.name || 'Không có danh mục'}</span>
+                                        )}
+
+                                            </div>
+                
+                                        </div>
+                                    </section>
                             </div>
                             <div className="at_ZtL CWiSMQ   ">
                                 <div className="flex flex-column">

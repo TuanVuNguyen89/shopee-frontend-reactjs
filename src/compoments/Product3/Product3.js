@@ -1,22 +1,19 @@
 import React from 'react';
 import '../Allproduct/Allproduct.scss';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import ReactPaginate from "react-paginate";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { faArrowRight, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import Sliderproduct from '../Allproduct/Sliderproduct/Sliderproduct';
-import banner1 from '../img/vn-50009109-9f55e03457f53c21641e034794aa44a0_xxhdpi.jpg'
-import banner2 from '../img/vn-50009109-eabbfa2e8ba38fa0d3ba2471c794a392_xxhdpi.jpg'
-import banner3 from '../img/vn-50009109-7ff80d285f5ba47e46094b56c68d5f6a_xxhdpi.jpg'
-import banner4 from '../img/ban4.jpg'
+
 import { readProductInfoWithType } from '../../services/productService'
 import { Buffer } from 'buffer';
 
 const Allproduct = (props) => {
+
     const history = useHistory();
     const getProduct = (id) => {
         history.push('/product', { id });
@@ -24,9 +21,9 @@ const Allproduct = (props) => {
 
     const [listProduct, setListProduct] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [currentLimit, setCurrentLimit] = useState(10);
+    const [currentLimit, setCurrentLimit] = useState(20);
     const [totalPages, setTotalPages] = useState(0);
-    const [currentCategoryId, setCurrentCategoryId] = useState(3);
+    const [currentCategoryId, setCurrentCategoryId] = useState(1);
     useEffect(() => {
         fetchProducts();
     }, [currentPage]);
@@ -108,7 +105,7 @@ const Allproduct = (props) => {
                     })
                 }
             </div>
-            <div className="Sliderproduct">
+            {/*<div className="Sliderproduct">
                 <Sliderproduct arrImages={[banner1, banner2, banner3, banner4]} />
             </div>
             <div className="row">
@@ -148,7 +145,7 @@ const Allproduct = (props) => {
                         )
                     })
                 }
-            </div>
+            </div>*/}
             {totalPages > 0 &&
                 <div className="user-footer">
                     <ReactPaginate

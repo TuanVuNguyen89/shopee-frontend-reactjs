@@ -37,7 +37,7 @@ const Nav = (props) => {
                 <NavLink className="folder" to="/product2">Quần short nam</NavLink>
                 <NavLink className="folder" to="/product3">Giày dép</NavLink>
                 <NavLink className="folder" to="/product4">Quần áo nữ</NavLink>
-                <NavLink className="folder" to="/more">Xem thêm    <FontAwesomeIcon icon={faCaretDown} /></NavLink>
+                <NavLink className="folder" to="/more">Khác</NavLink>
             </div>
             </div>
         );

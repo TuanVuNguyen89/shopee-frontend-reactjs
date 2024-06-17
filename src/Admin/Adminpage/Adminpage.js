@@ -25,7 +25,7 @@ const AdminAllproduct = (props) => {
     const [listUsers, setListUsers] = useState([]);
     const [listProduct, setListProduct] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [currentLimit, setCurrentLimit] = useState(10);
+    const [currentLimit, setCurrentLimit] = useState(20);
     const [totalPages, setTotalPages] = useState(0);
     useEffect(() => {
         fetchProducts();
@@ -81,6 +81,7 @@ const AdminAllproduct = (props) => {
         <div className="allBackground">
             <div className="recoment">
                 <h5>GỢI Ý CHO BẠN</h5>
+                <button type="button" class="btn btn-solid-primary btn--l YuENex delete" aria-disabled="false">Đăng xuất</button>
             </div>
             <div class="product mt-2 flex flex-column">
                 <div class="shopee_ic">
@@ -138,7 +139,7 @@ const AdminAllproduct = (props) => {
                     })
                 }
             </div>
-            <div className="Sliderproduct">
+            {/*<div className="Sliderproduct">
                 <Sliderproduct arrImages={[banner1, banner2, banner3, banner4]} />
             </div>
             <div className="row">
@@ -181,7 +182,7 @@ const AdminAllproduct = (props) => {
                         )
                     })
                 }
-            </div>
+            </div>*/}
             {totalPages > 0 &&
                 <div className="user-footer">
 

@@ -2,6 +2,7 @@ import Nav from './compoments/navigation/Nav';
 import Test from './compoments/Test/Test';
 import Test2 from './compoments/Test/Test2'
 import './App.scss';
+import { LoadingProvider } from './compoments/Loading/Loadingcontext';
 import Addproduct from './Admin/AddProduct/AddProduct';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -24,6 +25,7 @@ function App() {
 
   return (
     <Router>
+        <LoadingProvider>
       {user && user.isLoading ? <div> loading... </div> :
         <>
           <div className="shop-header">
@@ -38,6 +40,7 @@ function App() {
           </div>
         </>
       }
+      </LoadingProvider>
     </Router>
   );
 }

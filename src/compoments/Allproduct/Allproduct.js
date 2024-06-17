@@ -26,7 +26,7 @@ const Allproduct = (props) => {
     const history = useHistory();
     const [listProduct, setListProduct] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [currentLimit, setCurrentLimit] = useState(10);
+    const [currentLimit, setCurrentLimit] = useState(20);
     const [totalPages, setTotalPages] = useState(0);
 
     useEffect(() => {
@@ -50,7 +50,7 @@ const Allproduct = (props) => {
         //console.log(">>> check page&limit", currentPage, currentLimit);
         let response = await readProductInfo(currentPage, currentLimit);
 
-        //console.log(">>> check response", response);
+        //console.log(">>> check response", response.DT.DT);
         if (response && response.DT.EC === 0) {
             setTotalPages(response.DT.DT.totalPages);
             //setListProduct(response.DT.DT.products);
@@ -120,7 +120,7 @@ const Allproduct = (props) => {
                 }
             </div>
 
-            <div className="Sliderproduct">
+           {/* <div className="Sliderproduct">
                 <Sliderproduct arrImages={[banner1, banner2, banner3, banner4]} />
             </div>
 
@@ -161,7 +161,7 @@ const Allproduct = (props) => {
                         )
                     })
                 }
-            </div>
+            </div>*/}
 
             {totalPages > 0 &&
                 <div className="user-footer">
