@@ -23,7 +23,7 @@ const Allproduct = (props) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [currentLimit, setCurrentLimit] = useState(20);
     const [totalPages, setTotalPages] = useState(0);
-    const [currentCategoryId, setCurrentCategoryId] = useState(1);
+    const [currentCategoryId, setCurrentCategoryId] = useState(4);
     useEffect(() => {
         fetchProducts();
     }, [currentPage]);

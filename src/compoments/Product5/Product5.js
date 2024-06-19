@@ -23,7 +23,7 @@ const Allproduct = (props) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [currentLimit, setCurrentLimit] = useState(20);
     const [totalPages, setTotalPages] = useState(0);
-    const [currentCategoryId, setCurrentCategoryId] = useState(1);
+    const [currentCategoryId, setCurrentCategoryId] = useState(5);
     useEffect(() => {
         fetchProducts();
     }, [currentPage]);
@@ -107,47 +107,7 @@ const Allproduct = (props) => {
                     <p> Hiện tại không có sản phẩm nào </p>
                 }
             </div>
-            {/*<div className="Sliderproduct">
-                <Sliderproduct arrImages={[banner1, banner2, banner3, banner4]} />
-            </div>
-            <div className="row">
-                {
-                    listProduct.map((product, index) => {
-                        return (
-                            <div className="product col-xs-2 mt-2">
-                                <div className="shopee_ic">
-                                    <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
-                                        <button className="contents" onClick={() => getProduct(product.id)}>
-                                            <div className="flex flex-col bg-white cursor-pointer h-full">
-                                            <div className="relative z-0 w-full pt-full">
-                                                    <img src={product.image} alt={`${product.name}`} className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
-                                                </div>
-                                                <div className="p-2 flex-1 flex flex-col justify-between">
-                                                    <div className="space-y-1 mb-1 flex-1 flex flex-col justify-between min-h-[4rem]">
-                                                        <div className="line-clamp-2 break-words min-h-[2.5rem] text-sm">
-                                                            {product.name}
-                                                        </div>
-                                                    </div>
-                                                    <div className="flex-1 flex flex-col justify-between">
-                                                        <div className="mb-2 flex items-center">
-                                                            <span className="text-base5 truncate">{product.price}</span>
-                                                            <span className="text-base5">VNĐ</span>
-                                                            <div className="buyicon">
-                                                                <FontAwesomeIcon icon={faCartShopping} />
-                                                            </div>
-                                                        </div>
 
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        )
-                    })
-                }
-            </div>*/}
             {totalPages > 0 &&
                 <div className="user-footer">
                     <ReactPaginate

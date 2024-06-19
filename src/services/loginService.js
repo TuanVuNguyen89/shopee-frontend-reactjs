@@ -8,4 +8,8 @@ const getUserAccount = () => {
     return axios.get('/api/v1/account');
 };
 
-export { loginUser, getUserAccount };
+const logoutUser = () => {
+    return axios.post('/api/v1/logout');
+}
+
+export { loginUser, getUserAccount, logoutUser };

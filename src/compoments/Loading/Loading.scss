@@ -1,0 +1,40 @@
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 1000;
+    opacity: 1;
+}
+
+.loading-container {
+    font-size: 24px;
+    font-weight: bold;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    animation: bounce 1s infinite alternate;
+
+    img {
+        width: 80px; /* Độ rộng của hình ảnh */
+        height: 80px; /* Độ cao của hình ảnh */
+        object-fit: contain; /* Giữ nguyên tỷ lệ của hình ảnh */
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(10px); /* Điểm bắt đầu và kết thúc là không thay đổi */
+    }
+    50% {
+        transform: translateY(-10px); /* Giữa thời gian sẽ dịch chuyển lên 10px */
+    }
+}

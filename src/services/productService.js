@@ -23,7 +23,6 @@ const createProduct = (data) => {
     let _data = _.cloneDeep(data);
 
     // Add mainImage to _product
-    _data = { ..._data, categoryId: 1 }
     //console.log("this is product", _data);
     return axios.post('/api/v1/product/create', { _data });
 }

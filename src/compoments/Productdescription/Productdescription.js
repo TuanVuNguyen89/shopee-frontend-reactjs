@@ -64,28 +64,20 @@ const Productdescription = (props) => {
         if (response && response.DT.EC === 0) {
             const images = response.DT.DT;
 
-            const updatedImages = await Promise.all(images.map(async (item) => {
+            await images.map(async (item) => {
                 item.image = await convertToImage(item.image);
+                setThumbnails(thumbnails => [...thumbnails, item.image]);
                 return item;
-            }));
-
-            updatedImages.map((image, index) => {
-                setThumbnails(thumbnails => [...thumbnails, image.image]);
-            })
+            });
         }
     }
-
-    useEffect(() => {
-        console.log("thumbnails", thumbnails);
-    }, [thumbnails]);
 
     const fetchProduct = async () => {
         let response = await readProductInfoWithId(id);
 
-        console.log(">>> check response", response);
+        //console.log(">>> check response", response.DT.DT);
         if (response && response.DT.EC === 0) {
             let product = response.DT.DT;
-
             //console.log("product image from server: ", product.image);
             product.image = await convertToImage(product.image);
             //console.log("product image after changing: ", product.image);
@@ -119,6 +111,10 @@ const Productdescription = (props) => {
             setStartIdx(thumbnails.length - 1);
         }
     };
+    useEffect(() => {
+        if (thumbnails.length > 0) setMainImage(thumbnails[0]);
+    }, [thumbnails]);
+
 
     useEffect(() => {
         if (thumbnails.length > 0) setMainImage(thumbnails[0]);
@@ -204,7 +200,7 @@ const Productdescription = (props) => {
                             </div>
                         </div>
                         <div className="bwPwYa high-end-button-group">
-                            <a href='https://www.facebook.com/' target="_blank" rel="noopener noreferrer">
+                            <a href='https://www.facebook.com/profile.php?id=100006159049124&mibextid=LQQJ4d' target="_blank" rel="noopener noreferrer">
                                 <button type="button" className="btn btn-solid-primary btn--l YuENex" aria-disabled="false" ><FontAwesomeIcon icon={faCommentSms} />Liên hệ Ngay</button>
                             </a>
                         </div>

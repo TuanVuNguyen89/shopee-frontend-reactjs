@@ -1,22 +1,19 @@
 import React from 'react';
 import '../Allproduct/Allproduct.scss';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import ReactPaginate from "react-paginate";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { faArrowRight, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import Sliderproduct from '../Allproduct/Sliderproduct/Sliderproduct';
-import banner1 from '../img/vn-50009109-9f55e03457f53c21641e034794aa44a0_xxhdpi.jpg'
-import banner2 from '../img/vn-50009109-eabbfa2e8ba38fa0d3ba2471c794a392_xxhdpi.jpg'
-import banner3 from '../img/vn-50009109-7ff80d285f5ba47e46094b56c68d5f6a_xxhdpi.jpg'
-import banner4 from '../img/ban4.jpg'
+
 import { readProductInfoWithType } from '../../services/productService'
 import { Buffer } from 'buffer';
 
 const Allproduct = (props) => {
+
     const history = useHistory();
     const getProduct = (id) => {
         history.push('/product', { id });
@@ -24,7 +21,7 @@ const Allproduct = (props) => {
 
     const [listProduct, setListProduct] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [currentLimit, setCurrentLimit] = useState(10);
+    const [currentLimit, setCurrentLimit] = useState(20);
     const [totalPages, setTotalPages] = useState(0);
     const [currentCategoryId, setCurrentCategoryId] = useState(3);
     useEffect(() => {
@@ -71,7 +68,7 @@ const Allproduct = (props) => {
                 <h5>GỢI Ý CHO BẠN</h5>
             </div>
             <div className="row">
-                {
+                {(listProduct && listProduct.length > 0) ?
                     listProduct.map((product, index) => {
                         return (
                             <div className="product col-xs-2 mt-2">
@@ -79,7 +76,7 @@ const Allproduct = (props) => {
                                     <div className="h-full duration-100 ease-sharp-motion-curve hover:shadow-hover active:shadow-active hover:-translate-y-[1px] active:translate-y-0 relative hover:z-[1]">
                                         <button className="contents" onClick={() => getProduct(product.id)}>
                                             <div className="flex flex-col bg-white cursor-pointer h-full">
-                                            <div className="relative z-0 w-full pt-full">
+                                                <div className="relative z-0 w-full pt-full">
                                                     <img src={product.image} alt={`${product.name}`} className="inset-y-0 w-full h-full pointer-events-none object-contain absolute" aria-hidden="true"></img>
                                                 </div>
                                                 <div className="p-2 flex-1 flex flex-col justify-between">
@@ -106,9 +103,11 @@ const Allproduct = (props) => {
                             </div>
                         )
                     })
+                    :
+                    <p> Hiện tại không có sản phẩm nào </p>
                 }
             </div>
-            <div className="Sliderproduct">
+            {/*<div className="Sliderproduct">
                 <Sliderproduct arrImages={[banner1, banner2, banner3, banner4]} />
             </div>
             <div className="row">
@@ -148,7 +147,7 @@ const Allproduct = (props) => {
                         )
                     })
                 }
-            </div>
+            </div>*/}
             {totalPages > 0 &&
                 <div className="user-footer">
                     <ReactPaginate

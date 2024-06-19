@@ -1,7 +1,14 @@
 .product {
     position: relative;
   }
-  
+  button.btn.btn-solid-primary.btn--l.YuENex.delete {
+    color: white;
+    background-color: red;
+    height: 50px;
+    margin-left: auto;
+    margin-right: 50px;
+    margin-top: 30px;
+}
   .product:hover .overlay {
     opacity: 0.8;
   }
@@ -34,4 +41,5 @@
     background-color: black;
     color: white;
   }
+  
   

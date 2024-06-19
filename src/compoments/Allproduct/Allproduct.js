@@ -50,7 +50,7 @@ const Allproduct = (props) => {
         //console.log(">>> check page&limit", currentPage, currentLimit);
         let response = await readProductInfo(currentPage, currentLimit);
 
-        //console.log(">>> check response", response);
+        //console.log(">>> check response", response.DT.DT);
         if (response && response.DT.EC === 0) {
             setTotalPages(response.DT.DT.totalPages);
             //setListProduct(response.DT.DT.products);
@@ -161,6 +161,7 @@ const Allproduct = (props) => {
                         )
                     })
                 }
+
             </div> */}
 
             {totalPages > 0 &&
