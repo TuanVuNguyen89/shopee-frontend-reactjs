@@ -1,91 +1,116 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
   }
   
-.Background{
+  .Background {
     align-items: center;
     display: flex;
     position: relative;
     justify-content: center;
     height: 250px;
-    .Logo-container{
-        position: absolute;
-    }
-    .Logo-img{
-        box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5);
-        background-color: rgb(255, 255, 255);
-        border-radius: 50%;
-        height: 125px;
-        width: 125px;
-        margin-top: auto;
-        margin-bottom: auto;
-    }
-    .nameShop{
-        margin: 15px 15px;
-    }
-    .Logo{
-        display: flex;
-        background-color: rgb(255, 255, 255);
-        height: 175px;
-        width: fit-content;
-    }
-    .shopInfo p{
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        font-weight: 500;
-    }
-    p{
-        font-family: auto;
-        margin-left: 15px;
-        margin-bottom: 2px;
-        
-    }
-    a{  
-        margin-top: auto;
-        margin-bottom: auto;
-        text-decoration: none;
-        color: black;
-    }
-    .Description{
-        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        margin-left: auto;
-        display: flex;
-        background-color: rgb(255, 255, 255);
-        height: 175px;
-        width: fit-content;
-    }
-    pre {
-        font-family:var(--bs-body-font-family);
-        display: block;
-        margin-top: 0;
-        margin-bottom: 1rem;
-        overflow: auto;
-        font-weight: 600;
-        font-size: .9rem;
-    }
-    h5{
-        text-align: center;
-    }
-    .Background-img{
-        position: absolute;
-        background-attachment: fixed;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: -1;
-}
+    color: #fff;
+    overflow: hidden;
+  
 
-@media (max-width: 1200px) {
-    height: 200px;
-    .Logo {
-        display: flex;
-        background-color: rgb(255, 255, 255);
-         height: 125px; 
-        width: -moz-fit-content;
-        width: fit-content;
-    }
+  
     .Logo-img {
+      box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5);
+      background-color: rgb(255, 255, 255);
+      border-radius: 50%;
+      height: 125px;
+      width: 125px;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+  
+    .nameShop {
+      margin: 15px 15px;
+    }
+  
+    .Logo {
+        z-index: 3;
+    position: relative;
+      display: flex;
+      height: 175px;
+      width: fit-content;
+    }
+  
+    .shopInfo p {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-weight: 500;
+    }
+  
+    p {
+      font-family: auto;
+      margin-left: 15px;
+      margin-bottom: 2px;
+    }
+  
+    a {
+      margin-top: auto;
+      margin-bottom: auto;
+      text-decoration: none;
+      color: rgb(255, 255, 255);
+    }
+  
+    .Description {
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      margin-left: auto;
+      display: flex;
+      background-color: rgb(255, 255, 255);
+      height: 175px;
+      color: black;
+      width: fit-content;
+    }
+  
+    pre {
+      font-family: var(--bs-body-font-family);
+      display: block;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      overflow: auto;
+      font-weight: 600;
+      font-size: .9rem;
+    }
+  
+    h5 {
+      text-align: center;
+    }
+  
+    .Background-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      object-fit: cover; 
+      z-index: -2; 
+    }
+    .Background-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7); /* Lớp phủ màu đen bán trong suốt */
+        z-index: -1; /* Đặt lớp phủ phía trên ảnh nền */
+        border-radius: 10px; /* Bo tròn các góc của lớp phủ */
+      }
+  
+    @media (max-width: 1200px) {
+      height: 200px;
+  
+      .Logo {
+        display: flex;
+
+        height: 125px;
+        width: fit-content;
+      }
+  
+      .Logo-img {
         box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5);
         background-color: rgb(168, 168, 168);
         border-radius: 50%;
@@ -93,18 +118,19 @@ body {
         width: 75px;
         margin-top: auto;
         margin-bottom: auto;
-    }
-    .shopInfo p {
+      }
+  
+      .shopInfo p {
         font-weight: 300;
         font-size: x-small;
-    }
-    .Description {
+      }
+  
+      .Description {
         margin-left: auto;
         display: none;
         background-color: aliceblue;
         height: 125px;
+      }
+    }
   }
-    
-}
   
-}
